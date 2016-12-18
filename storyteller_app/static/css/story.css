@@ -1,0 +1,123 @@
+/* keyframe */
+@-webkit-keyframes mymove {
+    0% {margin-top: 50px;}
+    100% {margin-top: -10px;}
+}
+
+@keyframes mymove {
+    0% {margin-top: 50px;}
+    100% {margin-top: -10px;}
+}
+
+/* responsive */
+/* 把最下面3個放到media中 */
+@media only screen and (max-width: 767px) {
+
+    @-webkit-keyframes mymove {
+        0% {margin-top: 50px;}
+        100% {margin-top: 0px;}
+    }
+
+    @keyframes mymove {
+        0% {margin-top: 50px;}
+        100% {margin-top: 0px;}
+    }
+
+    .navbar-nav .open .dropdown-menu {
+        background-color: white;
+    }
+
+    .dropdown-menu > li > a {
+        color: gray; 
+    }
+
+    .dropdown-menu > li > a:hover {
+        color: gray; 
+    }
+}
+/* Slogan Adjust */
+p.site-slogan {
+    right: 0px;
+}
+
+/* Bootstrap Modifications */
+body{
+    background-color: #F4F1EA;
+}
+
+.navbar {
+    font-weight: 400;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    background-color: black;
+    border: 1px solid black;
+}
+
+.navbar-brand {
+    font-size: 40px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {;
+    background-color: gray; 
+}
+
+/* 這是新的 */
+.dropdown-menu {
+    background-color: white;
+}
+
+.caret {
+    color: #F4F1EA;
+}
+
+.dropdown-menu > li > a {
+    color: gray; 
+}
+
+.dropdown-menu > li > a:hover {
+    color: gray; 
+}
+
+#main-title {
+   padding-top: 10px;
+   font-family: cursive;
+   color: #F4F1EA;
+}
+
+#log-in{
+    color: #F4F1EA;
+}
+
+#log-in:hover {
+    font-weight: 600;
+    background-color: black; 
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #F4F1EA;
+ }
+
+.navbar-default .navbar-nav > li > a:hover {
+    font-weight: 600;
+    color: #F4F1EA;
+    background-color: black;
+}
+
+.navbar-default .navbar-nav > li > a:visited {
+    font-weight: 600;
+    color: #F4F1EA;
+    background-color: black;
+}
+
+
+.mode-button{
+	float: right;
+}
+
+.end-line{
+    width: 100%;
+
+}

@@ -1,0 +1,86 @@
+.black-background {
+  position:fixed; top: 0px; left: 0px; 
+  
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfd8dc+0,607d8b+100,b0bec5+100 */
+  background: rgba(11, 11, 11, 0.6); /* Old browsers */
+  /* background: -moz-linear-gradient(-45deg,  #cfd8dc 0%, #607d8b 100%, #b0bec5 100%); /* FF3.6-15 */
+  /*background: -webkit-linear-gradient(-45deg,  #cfd8dc 0%,#607d8b 100%,#b0bec5 100%); /* Chrome10-25,Safari5.1-6 */
+  /*background: linear-gradient(135deg,  #cfd8dc 0%,#607d8b 100%,#b0bec5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfd8dc', endColorstr='#b0bec5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  font-family: 'Open Sans', sans-serif;
+}
+
+.create-background {  
+
+	width: 66.66666666666666%;
+	height: 50%;
+	overflow: hidden;
+	background-color: #F4F1EA;
+	border: 1px ;
+	border-radius: 5px;
+  
+}
+.mid{
+	margin-top: 180px;
+}
+.ttop{
+	margin-top: 100px;
+}
+.tttop{
+	margin-top: 150px;
+}
+.ttttop{
+  /*float:right;*/
+  margin-top: 30px;
+}
+.icon-left{
+	padding-left: 40%;	
+}
+
+.icon-top{
+	margin-top: 20px;
+	float:right;
+}
+
+.input-area{
+	font-size:16px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+
+.text-area{
+	font-size:16px;
+	resize: none;
+	display: block;
+	border: 1px solid #cccccc;
+    border-radius: 5px;
+
+}
+
+.char{
+	float: left;
+  	padding-right: 10px;
+}
+
+.create-form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+

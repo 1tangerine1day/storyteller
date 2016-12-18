@@ -1,0 +1,214 @@
+/* keyframe */
+@-webkit-keyframes mymove {
+	0% {margin-top: 50px;}
+	100% {margin-top: -10px;}
+}
+
+@keyframes mymove {
+	0% {margin-top: 50px;}
+	100% {margin-top: -10px;}
+}
+
+/* responsive */
+@media only screen and (max-width: 767px) {
+
+	@-webkit-keyframes mymove {
+		0% {margin-top: 50px;}
+		100% {margin-top: 0px;}
+	}
+
+	@keyframes mymove {
+		0% {margin-top: 50px;}
+		100% {margin-top: 0px;}
+	}
+
+	.navbar-nav .open .dropdown-menu {
+		background-color: white;
+	}
+
+	.dropdown-menu > li > a {
+    	color: gray; 
+	}
+
+	.dropdown-menu > li > a:hover {
+	    color: gray; 
+	}
+}
+/* Slogan Adjust */
+p.site-slogan {
+    right: 0px;
+}
+
+/* Bootstrap Modifications */
+body{
+    background-color: #F4F1EA;
+}
+
+.navbar {
+	font-weight: 400;
+	font-size: 20px;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	background-color: black;
+	border: 1px solid black;
+}
+
+.navbar-brand {
+	font-size: 40px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {;
+    background-color: gray; 
+}
+
+.dropdown-menu {
+	background-color: white;
+}
+
+.caret {
+	color: #F4F1EA;
+}
+
+.dropdown-menu > li > a {
+    color: gray; 
+}
+
+.dropdown-menu > li > a:hover {
+    color: gray; 
+}
+
+#main-title {
+   padding-top: 10px;
+   font-family: cursive;
+   color: #F4F1EA;
+}
+
+#log-in{
+	color: #F4F1EA;
+}
+
+#log-in:hover {
+	font-weight: 600;
+	background-color: black; 
+}
+
+.navbar-default .navbar-nav > li > a {
+ 	color: #F4F1EA;
+ }
+
+.navbar-default .navbar-nav > li > a:hover {
+	font-weight: 600;
+	color: #F4F1EA;
+	background-color: black;
+}
+
+.navbar-default .navbar-nav > li > a:visited {
+	font-weight: 600;
+	color: #F4F1EA;
+	background-color: black;
+}
+
+/* finish */
+figure > figcaption > span {
+	color: #363539;
+}
+
+figure > figcaption > span:hover {
+	color: #363539;
+}
+
+figure > figcaption > h3 > small {
+	color: #363539;
+}
+
+.selection {
+	margin-top: 70px;
+}
+
+#line {
+	width: 50%;
+	height: 1px;
+	background-color: gray;
+}
+
+.person-details {
+	margin-top: 30px;
+}
+
+.finish {
+	height: 200px;
+	text-align: center;
+}
+
+.editing {
+	height: 200px;
+	text-align: center;
+}
+
+figure .btn-primary {
+	display: none;
+	margin-top: 50px;
+	background-color: blue;
+}
+
+.list-inline {
+	height: 40px;
+	color: gray;
+	margin-top: -5px;
+	border-radius: 2px 2px 5px 5px;
+}
+
+.fa-thumbs-up {
+	color: white;
+}
+
+.pagination {
+	margin-top: 70px;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	 z-index: 3;
+	 color: #fff;
+	 cursor: default;
+	 background-color: gray;
+	 border-color: gray;
+}
+
+.pagination > li > a {
+	color: gray;
+}
+
+.pagination > li > a:hover {
+	color: black;
+}
+
+.finish:hover .btn-primary {
+	display: inline-block;
+	border-width: 2px;
+	background-color: #363539;
+	border-color: white;
+	animation: mymove 0.5s ;
+	animation-fill-mode: forwards;
+} 
+
+.finish:hover {
+	background-color: #DCDCDC;
+}
+
+.editing:hover .btn-primary {
+	display: inline-block;
+	border-width: 2px;
+	background-color: #363539;
+	border-color: white;
+	animation: mymove 0.5s ;
+	animation-fill-mode: forwards;
+} 
+
+.editing:hover {
+	background-color: #DCDCDC;
+}

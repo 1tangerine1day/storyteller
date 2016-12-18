@@ -1,0 +1,117 @@
+/* keyframe */
+@-webkit-keyframes mymove {
+	0% {width: 20px;}
+	100% {width: 500px;}
+}
+
+@keyframes mymove {
+	0% {height: 20px;}
+	100% {height: 500px;}
+}
+
+/* Bootstrap Modifications */
+body{
+    background-color: #F4F1EA;
+}
+
+.navbar {
+	font-weight: 400;
+	font-size: 20px;
+	padding-top: 20px;
+	padding-bottom: 15px;
+	background-color: black;
+	border: 1px solid black;
+}
+
+.navbar-brand {
+	font-size: 40px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {;
+    background-color: gray; 
+}
+
+.caret {
+	color: #F4F1EA;
+}
+
+.dropdown-menu > li > a {
+    color: gray; 
+}
+
+.dropdown-menu > li > a:hover {
+    color: gray; 
+}
+
+#main-title {
+   padding-top: 10px;
+   font-family: cursive;
+   color: #F4F1EA;
+}
+
+#log-in{
+	color: #F4F1EA;
+}
+
+#log-in:hover {
+	background-color: gray; 
+}
+
+/* collect */
+
+#line {
+	width: 50%;
+	height: 1px;
+	background-color: gray;
+}
+#line1 {
+	width: 70%;
+	height: 1px;
+	background-color: gray;
+}
+
+.person-details {
+	margin-top: 30px;
+}
+
+.finish {
+	height: 250px;
+}
+
+.finish p {
+	color: gray;
+}
+
+.list-inline {
+	margin-top: 110px;
+}
+
+.fa-thumbs-up {
+	color: white;
+}
+
+/* 這裡到finish有改自己看 */
+#log-in:hover {
+	font-weight: 600;
+	background-color: black; 
+}
+
+.navbar-default .navbar-nav > li > a {
+ 	color: #F4F1EA;
+ }
+
+.navbar-default .navbar-nav > li > a:hover {
+	font-weight: 600;
+	color: #F4F1EA;
+	background-color: black;
+}
+
+.navbar-default .navbar-nav > li > a:visited {
+	font-weight: 600;
+	color: #F4F1EA;
+	background-color: black;
+}
+
+

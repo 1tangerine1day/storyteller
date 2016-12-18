@@ -1,0 +1,219 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Title -->
+	<title>Story Teller</title>
+	<!-- Meta -->
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<!-- Bootstrap Core CSS -->
+	<link rel="stylesheet" href="{% static 'css/c_bootstrap.css' %}">
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nexus.css' %}">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+	<link rel="stylesheet" href="{% static 'css/finish.css' %}">
+	<!-- Google Fonts-->
+	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
+	<!-- js-->
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+	<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
+</head>
+<body>
+	<!-- navbar -->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+      		</button>
+	      <a class="navbar-brand" id="main-title" href="index.html">Story Teller</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a id="create" href="#">Creat new story</a></li>
+	        <li><a id="log-in" href="#">Log in</a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">more <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="index.html">Home</a></li>
+	            <li><a href="finish.html">Finished story</a></li>
+	            <li><a href="team.html">About us</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#!">Log out</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div>
+	  </div><!-- /.container-fluid -->
+	</nav><!-- /navbar -->
+
+	<!-- login -->
+	<div class="cotn_principal" id="log_in_page" style="display:none;">
+		<a id="close_log" href="#"><img src="{% static 'img/ic_clear.png' %}"></a>
+		<div class="cont_centrar">
+  			<div class="cont_login">
+				<div class="cont_info_log_sign_up">
+      				<div class="col_md_login">
+						<div class="cont_ba_opcitiy">
+	        				<h2>LOGIN</h2>  
+	  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
+	  						<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+  						</div>
+  					</div>
+					<div class="col_md_sign_up">
+						<div class="cont_ba_opcitiy">
+  							<h2>SIGN UP</h2>
+  							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  							<button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+						</div>
+  					</div>
+       			</div>
+    			<div class="cont_back_info">
+       				<div class="cont_img_back_grey">
+       					<img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
+       				</div>
+    			</div>
+				<div class="cont_forms" >
+    				<div class="cont_img_back_">
+       					<img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
+       				</div>
+ 					<div class="cont_form_login">
+						<a href="#" onclick="ocultar_login_sign_up()" ><img src="{% static 'img/ic_keyboard.png' %}"></a>
+						  <h2>LOGIN</h2>
+						 <input type="text" placeholder="Email" />
+						<input type="password" placeholder="Password" />
+						<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+						<button class="btn_login_f" onclick="cambiar_login()">FACEBOOK</button>
+  					</div>
+   					<div class="cont_form_sign_up">
+						<a href="#" onclick="ocultar_login_sign_up()"><img src="{% static 'img/ic_keyboard.png' %}assets/img/ic_keyboard.png"></a>
+						   <h2>SIGN UP</h2>
+						<input type="text" placeholder="Email" />
+						<input type="text" placeholder="User" />
+						<input type="password" placeholder="Password" />
+						<input type="password" placeholder="Confirm Password" />
+						<button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+  					</div>
+    			</div>
+  			</div>
+ 		</div>
+	</div>
+	
+	<!-- create -->
+	<div class=" black-background " id="create_page" style="display:none;">
+		<div class="create-background col-md-offset-2 col-md-8 
+			col-xs-offset-2 col-xs-6 mid">
+			<div class="row">	
+				<div class="col-md-12">	
+				 <form  class="form" action="{% url 'addpost' %}" method="POST" role="form">
+				 {% csrf_token %}
+                 {{ form.as_p }}
+					<div class="col-md-offset-4 col-md-7 col-xs-10">
+						<h1>建立你的故事</h1>
+					</div>
+					<div class="icon-top" >
+						<a id="close_create" href="#"><img src="{% static 'img/ic_clear_b.png' %}"></a>
+					</div>
+				</div>
+				<!-- 標題取值 -->
+				<div class="ttop">
+					<input type="text"  id="new-title" class="input-area col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8"
+					placeholder="標題"  name="new-title"/>
+				</div>
+				<!-- 第一句取值 -->
+	            <div class="tttop">
+	            	<textarea class="text-area col-md-offset-2 col-md-8 col-xs-12" id="first-sentence "  name="first-sentence" 
+	            	rows="6" cols="50" placeholder="開頭"></textarea>
+	            </div>
+				<div>
+					<button type="submit">send</button>
+				</div>
+				</form>
+	        </div>
+		</div>					 				
+	</div>
+	
+	
+
+	<!-- finish -->
+	<div class="row selection">
+		<div class="col-md-offset-3 col-md-4 col-xs-offset-3 col-xs-9">
+			<h2>Editing Story</h2>
+		</div>
+		<div class="col-md-offset-0 col-md-3 col-xs-offset-3 col-xs-9">
+			<a href="{% url 'collection_f' %}"><button type="button" class="btn btn-info">Finished Story</button></a>
+			<button type="button" class="btn btn-black">new</button>
+			<button type="button" class="btn btn-black">hot</button>
+		</div>
+	</div>
+	<!-- line -->
+	<div class="row">
+		<div class="col-md-offset-3  col-xs-offset-3 col-md-6 col-xs-6" id="line"></div>
+	</div>
+	<!-- finished story -->
+	
+	<div class="row">
+	{% for post in post_list %}	
+	{% if forloop.counter0|divisibleby:3 %}
+	
+		<div class="col-md-offset-3 col-md-2 person-details">
+		
+			<figure class="editing" id="story1">
+				<figcaption>
+				<h3 class="margin-bottom-10">{{ post.storyTitle }}<small> - {{ post.created_at }}</small></h3>
+				<span>{{ post.firstSentence }}....</span>
+				</figcaption>
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
+			</figure>
+			
+			<ul class="list-inline person-details-icons">
+				<li><p>21600</p></li>
+				<li><a href="#"><i class="fa-lg fa-thumbs-up"></i></a></li>
+			</ul>
+		</div>
+	
+	{% else %}
+	<div class="col-md-2 person-details">
+			<figure class="editing" id="story1">
+				<figcaption>
+				<h3 class="margin-bottom-10">{{ post.storyTitle }}<small> - {{ post.created_at }}</small></h3>
+				<span>{{ post.firstSentence }}....</span>
+				</figcaption>
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
+			</figure>
+		<ul class="list-inline person-details-icons">
+			<li><p>21600</p></li>
+			<li><a href="#"><i class="fa-lg fa-thumbs-up"></i></a></li>
+		</ul>
+	</div>
+	{% endif %}
+	{% endfor %}
+</div><!-- /.row -->
+	<div class="text-center">
+	   <ul class="pagination">
+	      <li><a href="#">&laquo;</a></li>
+	      <li class="active"><a href="#">1</a></li>
+	      <li><a href="#">2</a></li>
+	      <li><a href="#">3</a></li>
+	      <li><a href="#">4</a></li>
+	      <li><a href="#">5</a></li>
+	      <li><a href="#">&raquo;</a></li>
+	   </ul>
+	</div>
+
+</body>
+</html>
