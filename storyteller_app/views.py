@@ -10,7 +10,8 @@ from time import localtime,strftime
 from django.db.models import F
 
         
-        
+
+
 def show(request, pk):
     
     check_pk = pk
@@ -118,4 +119,4 @@ def addpost(request):
 
 
 def index(request):
-    return render(request,'storyteller_app/index.html')
+    return render(request, 'storyteller_app/index.html')
