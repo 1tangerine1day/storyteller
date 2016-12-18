@@ -17,6 +17,8 @@ class Story(models.Model):
 class Post(models.Model):
 	storyTitle = models.CharField(max_length=25)
 	created_at = models.CharField(max_length=25)
+	created_day = models.CharField(max_length=25)
+	created_mon = models.CharField(max_length=25)
 	firstSentence = models.TextField(max_length=100)
 	
 

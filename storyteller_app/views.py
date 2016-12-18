@@ -90,6 +90,8 @@ def addpost(request):
             Post.objects.create(
                 storyTitle = new_title,
                 created_at = strftime("%Y %b %d",localtime()),
+                created_day = strftime("%d",localtime()),
+                created_mon = strftime("%b",localtime()),
                 firstSentence = first_sentence,
             )
             
