@@ -23,32 +23,12 @@
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
 	<!-- js-->
-	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
 	<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
 </head>
 <body>
-	<script>
-    var FacebookAppId = '676819089155746';
-    window.fbAsyncInit = function() {
-    	FB.init({
-    		appId      : FacebookAppId,
-    		xfbml      : true,
-    		version    : 'v2.8'
-		});
-    	window.fbloaded();
-    	FB.AppEvents.logPageView();
-    };
-    (function(d, s, id){
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {return;}
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	</script>
-
 	<!-- navbar -->
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -65,16 +45,15 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
 	      	<li><a id="create" href="#">Creat new story</a></li>
-	        <li><img id="my-profile-picture" class="img-rounded user-pic" src=""></li>
 	        <li><a id="log-in" href="#">Log in</a></li>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">more <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	            <li><a href="index.html">Home</a></li>
 	            <li><a href="finish.html">Finished story</a></li>
 	            <li><a href="team.html">About us</a></li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#" id="logout">Log out</a></li>
+	            <li><a href="#!">Log out</a></li>
 	          </ul>
 	        </li>
 	      </ul>
@@ -118,7 +97,7 @@
 						 <input type="text" placeholder="Email" />
 						<input type="password" placeholder="Password" />
 						<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-						<button class="btn_login_f" id="fb-login">FACEBOOK</button>
+						<button class="btn_login_f" onclick="cambiar_login()">FACEBOOK</button>
   					</div>
    					<div class="cont_form_sign_up">
 						<a href="#" onclick="ocultar_login_sign_up()"><img src="{% static 'img/ic_keyboard.png' %}assets/img/ic_keyboard.png"></a>
@@ -177,8 +156,8 @@
 		</div>
 		<div class="col-md-offset-0 col-md-3 col-xs-offset-3 col-xs-9">
 			<a href="{% url 'collection_f' %}"><button type="button" class="btn btn-info">Finished Story</button></a>
-			<button type="button" class="btn btn-black">new</button>
-			<button type="button" class="btn btn-black">hot</button>
+			<a class="btn btn-primary" href="{% url 'new_sort' %}">new</a>
+			<a class="btn btn-primary" href="{% url 'hot_sort' %}">hot</a>
 		</div>
 	</div>
 	<!-- line -->
@@ -202,8 +181,8 @@
 			</figure>
 			
 			<ul class="list-inline person-details-icons">
-				<li><p>21600</p></li>
-				<li><a href="#"><i class="fa-lg fa-thumbs-up"></i></a></li>
+				<li><p>{{ post.post_likes }}</p></li>
+				<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
 			</ul>
 		</div>
 	
@@ -217,8 +196,8 @@
 				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
 			</figure>
 		<ul class="list-inline person-details-icons">
-			<li><p>21600</p></li>
-			<li><a href="#"><i class="fa-lg fa-thumbs-up"></i></a></li>
+			<li><p>{{ post.post_likes }}</p></li>
+			<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
 		</ul>
 	</div>
 	{% endif %}
@@ -235,63 +214,6 @@
 	      <li><a href="#">&raquo;</a></li>
 	   </ul>
 	</div>
-	
-	
-	
-	<script type="text/javascript">
-    window.fbloaded = function() {
-      FB.Event.subscribe('auth.statusChange', function(response) {
-        if (response.status === 'connected'){
-          FB.api("/me/picture?width=40", function(response) {
-            $("#my-profile-picture").attr("src", response.data.url);
-          });
-          FB.api("/me/picture?width=400", function(response) {
-            $("#me-picture").attr("src", response.data.url);
-          });
-          FB.api("/me", function(response) {
-            $("#log-in").html(response.name);
-          });
-        }
-      });
-    }
-    var fblogin = function(){
-      FB.getLoginStatus(function(response){
-        if(response.status != 'connected'){
-          FB.login(function(response){
-            $("#log_in_page").hide();
-          });
-        }
-      });
-    }
-	var logout = function(){
-      FB.getLoginStatus(function(response){
-        if(response.status === 'connected'){
-          FB.logout(function(response){
-            $("#log-in").html("Login");
-            $("#my-profile-picture").attr("src", "");
-            //$("#me-picture").attr("src", "{% static 'img/blackguy.jpeg' %}");
-          });
-        }
-      });
-    }
-		
-    $("#fb-login").click(function(){
-      fblogin();
-    });
-    $("#logout").click(function(){
-      logout();
-    });
-
-// var sharing = function(){
-//   FB.ui({
-//     method: 'share',
-//     href:'https://fb-login-test-jack8409201.c9users.io/',
-//   },function(response){});
-// }
-// $("#share-button").click(function(){
-//   sharing();
-// });
-	</script>
 
 </body>
 </html>
