@@ -37,7 +37,10 @@ def story(request, pk):
             #return HttpResponseRedirect(url)
             story_list = Story.objects.filter(post_id=check_pk).all()
             post_story = Post.objects.get(pk=check_pk)
-            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+            #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+            
+            intopk = Story.objects.get(pk=check_pk)
+            return redirect("story",intopk.post_id)
             
         
         else:
@@ -51,6 +54,7 @@ def story(request, pk):
     else:
         story_list = Story.objects.filter(post_id=check_pk).all()
         post_story = Post.objects.get(pk=check_pk)
+        
         return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
  
  
