@@ -29,27 +29,6 @@
 	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
 </head>
 <body>
-	<script>
-    var FacebookAppId = '676819089155746';
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : FacebookAppId,
-        xfbml      : true,
-        version    : 'v2.8'
-      });
-      window.fbloaded();
-      FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-	
 	
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -246,51 +225,7 @@
 	      <li><a href="#">&raquo;</a></li>
 	   </ul>
 	</div>
-	
-	<script type="text/javascript">
-    window.fbloaded = function() {
-      FB.Event.subscribe('auth.statusChange', function(response) {
-        if (response.status === 'connected'){
-          FB.api("/me/picture?width=40", function(response) {
-            $("#my-profile-picture").attr("src", response.data.url);
-          });
-          FB.api("/me/picture?width=400", function(response) {
-            $("#me-picture").attr("src", response.data.url);
-          });
-          FB.api("/me", function(response) {
-            $("#log-in").html(response.name);
-          });
-        }
-      });
-    }
-    var fblogin = function(){
-      FB.getLoginStatus(function(response){
-        if(response.status != 'connected'){
-          FB.login(function(response){
-            $("#log_in_page").hide();
-          });
-          //location.href= ("https://www.facebook.com/"); 
-        }
-      });
-    }
-	var logout = function(){
-      FB.getLoginStatus(function(response){
-        if(response.status === 'connected'){
-          FB.logout(function(response){
-            $("#log-in").html("Login");
-            $("#my-profile-picture").attr("src", "");
-            $("#me-picture").attr("src", "{% static 'img/blackguy.jpeg' %}");
-          });
-        }
-      });
-    }
-		
-    $("#fb-login").click(function(){
-      fblogin();
-    });
-    $("#logout").click(function(){
-      logout();
-    });
+
 
 </body>
 </html>

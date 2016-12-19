@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^story/(?P<pk>\d+)/', views.story, name='story'),
     url(r'^likes/(?P<pk>\d+)/', views.likes, name='likes'),
     url(r'^post_likes/(?P<pk>\d+)/', views.post_likes, name='post_likes'),
+    url(r'^in_post_likes/(?P<pk>\d+)/', views.in_post_likes, name='in_post_likes'),
     url(r'^finish/', views.collection_f, name='collection_f'),
     url(r'^post/', views.addpost, name = 'addpost'),
     url(r'^adduser/', views.adduser, name = 'adduser'),

@@ -176,7 +176,16 @@ def post_likes(request, pk):
     return render(request, 'storyteller_app/collection_e.html',{'post_list': post_list })
     
    
- 
+   
+def in_post_likes(request, pk):
+    
+    temp_pk = pk
+    intopk = Story.objects.get(pk=temp_pk)
+    
+    Post.objects.filter(pk=temp_pk).update(post_likes = F('post_likes')+1)
+    
+    return redirect("story",intopk.post_id)
+    
  
  
  
