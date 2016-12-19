@@ -153,6 +153,10 @@ figure .btn-primary {
 	background-color: blue;
 }
 
+figure .btn-primary a {
+	color: white;
+}
+
 .list-inline {
 	height: 40px;
 	color: gray;

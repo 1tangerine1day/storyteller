@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
 	<link rel="stylesheet" href="{% static 'css/nexus.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-
+	<link rel="stylesheet" href="{% static 'css/create.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/comments.css' %}">
 	<link rel="stylesheet" href="{% static 'css/flips.css' %}">
@@ -26,6 +26,7 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/editing.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/flips.js' %}"></script>
@@ -43,17 +44,17 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
       		</button>
-	      <a class="navbar-brand" id="main-title" href="index.html">Story Teller</a>
+	      <a class="navbar-brand" id="main-title" href="{% url 'index' %}">Story Teller</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a id="creat" href="#">Creat new story</a></li>
+	      	<li><a id="create" href="#">Create new story</a></li>
 	        <li><a id="log-in" href="#">Log in</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="index.html">Home</a></li>
-	            <li><a href="finish.html">Finished story</a></li>
+	            <li><a href="{% url 'index' %}">Home</a></li>
+	            <li><a href="{% url 'collection_f' %}">Finished story</a></li>
 	            <li><a href="team.html">About us</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="#!">Log out</a></li>
@@ -115,6 +116,40 @@
   			</div>
  		</div>
 	</div><!-- /login -->
+
+	<!-- create -->
+	<div class=" black-background " id="create_page" style="display:none;">
+		<div class="create-background col-md-offset-2 col-md-8 
+			col-xs-offset-2 col-xs-6 mid">
+			<div class="row">	
+				<div class="col-md-12">	
+				 <form  class="form" action="{% url 'addpost' %}" method="POST" role="form">
+				 {% csrf_token %}
+                 {{ form.as_p }}
+					<div class="col-md-offset-4 col-md-7 col-xs-10">
+						<h1>建立你的故事</h1>
+					</div>
+					<div class="icon-top" >
+						<a id="close_create" href="#"><img src="{% static 'img/ic_clear_b.png' %}"></a>
+					</div>
+				</div>
+				<!-- 標題取值 -->
+				<div class="ttop">
+					<input type="text"  id="new-title" class="input-area col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8"
+					placeholder="標題"  name="new-title"/>
+				</div>
+				<!-- 第一句取值 -->
+	            <div class="tttop">
+	            	<textarea class="text-area col-md-offset-2 col-md-8 col-xs-12" id="first-sentence "  name="first-sentence" 
+	            	rows="6" cols="50" placeholder="開頭"></textarea>
+	            </div>
+				<div>
+					<button type="submit">send</button>
+				</div>
+				</form>
+	        </div>
+		</div>					 				
+	</div>
     
     <!-- editting -->
 	
