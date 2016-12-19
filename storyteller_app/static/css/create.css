@@ -24,18 +24,12 @@
   
 }
 .mid{
-	margin-top: 180px;
-}
-.ttop{
-	margin-top: 100px;
-}
-.tttop{
 	margin-top: 150px;
 }
-.ttttop{
-  /*float:right;*/
-  margin-top: 30px;
+.ttop{
+	margin-top: 30px;
 }
+
 .icon-left{
 	padding-left: 40%;	
 }
@@ -55,6 +49,12 @@
 	font-size:16px;
 	resize: none;
 	display: block;
+	border: 1px solid #cccccc;
+    border-radius: 5px;
+
+}
+
+.btn-area{
 	border: 1px solid #cccccc;
     border-radius: 5px;
 
