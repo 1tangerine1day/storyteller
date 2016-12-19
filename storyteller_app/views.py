@@ -217,9 +217,6 @@ def adduser(request):
                 account = new_account,
                 password = new_password,
             )
-            
-           
-            
 
             return HttpResponseRedirect("/")
         
