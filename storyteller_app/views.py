@@ -9,9 +9,10 @@ from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
 
+#global
+post_list  = Post.objects.all()
+    
         
-
-
 def show(request, pk):
     
     check_pk = pk
@@ -52,6 +53,12 @@ def show(request, pk):
         post_story = Post.objects.get(pk=check_pk)
         return render(request, 'storyteller_app/show.html',{'story': story_list, 'post': post_story})
  
+ 
+ 
+ 
+ 
+ 
+ 
         
 def likes(request, pk):
     
@@ -60,26 +67,44 @@ def likes(request, pk):
     Story.objects.filter(pk=temp_pk).update(likes = F('likes')+1)
     intopk = Story.objects.get(pk=temp_pk)
     
-    #story_list = Story.objects.filter(post_id=1234).all()
-    #return HttpResponseRedirect("url 'story' temp_pk")
-    #return render_to_response('mycontacts/show.html',{'story': story_list})
-    #url = reverse('story', kwargs={'story': temp_pk})
-    #return HttpResponseRedirect(url)
-    
     return redirect("story",intopk.post_id)
     
+    
+    
+    
+    
+    
+    
 def collection_e(request):
-    post_list = Post.objects.all()
+    
+    global post_list
+    
+    
     return render(request,'storyteller_app/collection_e.html',{
         'post_list': post_list,
     })
     
+  
+  
+  
+ 
+  
+  
     
 def collection_f(request):
+    
     return render(request,'storyteller_app/collection_f.html')
     
     
+    
+    
+    
+    
+    
+    
 def addpost(request):
+    
+    global post_list
 
     if request.method == 'POST':
         
@@ -93,6 +118,7 @@ def addpost(request):
                 created_at = strftime("%Y %b %d",localtime()),
                 created_day = strftime("%d",localtime()),
                 created_mon = strftime("%b",localtime()),
+                post_like = 0,
                 firstSentence = first_sentence,
             )
             
@@ -107,16 +133,73 @@ def addpost(request):
                 )
             
 
-        
-            post_list = Post.objects.all()
             return redirect("story",intopk.pk)
+        
         else:
-            #return HttpResponseRedirect(request, 'mycontacts/show.html',{'story': story_list})   
-            return HttpResponseRedirect("/")
+            return render(request,'storyteller_app/collection_e.html',{'post': post_list})
+    
     else:
-        post_list = Post.objects.all()
         return render(request,'storyteller_app/collection_e.html',{'post': post_list})
 
 
+
+
+
+
+
+
 def index(request):
-    return render(request, 'storyteller_app/index.html')
+    return render(request,'storyteller_app/index.html')
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+
+def post_likes(request, pk):
+    
+    global post_list
+    
+    temp_pk = pk
+    
+    Post.objects.filter(pk=temp_pk).update(post_likes = F('post_likes')+1)
+    
+    post_list  = Post.objects.all()
+    
+    
+    return render(request, 'storyteller_app/collection_e.html',{'post_list': post_list })
+    
+   
+ 
+ 
+ 
+ 
+    
+    
+def hot_sort(request):
+    
+    global post_list
+    
+    post_list = Post.objects.all().order_by('-post_likes')
+    
+    return render(request, 'storyteller_app/collection_e.html',{'post_list': post_list})
+
+
+    
+    
+    
+    
+    
+def new_sort(request):
+    
+    global post_list
+    
+    post_list = Post.objects.all().order_by('-pk')
+    
+    return render(request, 'storyteller_app/collection_e.html',{'post_list': post_list})
+    
+    
+    

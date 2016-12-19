@@ -1,3 +1,4 @@
+
 /* keyframe */
 @-webkit-keyframes mymove {
 	0% {margin-top: 50px;}
@@ -215,4 +216,5 @@ figure .btn-primary a {
 
 .editing:hover {
 	background-color: #DCDCDC;
+
 }
