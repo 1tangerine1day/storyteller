@@ -39,17 +39,17 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
       		</button>
-	     	<a class="navbar-brand" id="main-title" href="index.html">Story Teller</a>
+	      <a class="navbar-brand" id="main-title" href="{% url 'index' %}">Story Teller</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a id="creat" href="#">Creat new story</a></li>
+	      	<li><a id="create" href="#">Create new story</a></li>
 	        <li><a id="log-in" href="#">Log in</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">more <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="index.html">Home</a></li>
-	            <li><a href="finish.html">Finished story</a></li>
+	            <li><a href="{% url 'index' %}">Home</a></li>
+	            <li><a href="{% url 'collection_f' %}">Finished story</a></li>
 	            <li><a href="team.html">About us</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="#!">Log out</a></li>

@@ -1,3 +1,4 @@
+
 /* keyframe */
 @-webkit-keyframes mymove {
 	0% {margin-top: 50px;}
@@ -153,6 +154,10 @@ figure .btn-primary {
 	background-color: blue;
 }
 
+figure .btn-primary a {
+	color: white;
+}
+
 .list-inline {
 	height: 40px;
 	color: gray;
@@ -211,4 +216,5 @@ figure .btn-primary {
 
 .editing:hover {
 	background-color: #DCDCDC;
+
 }
