@@ -12,29 +12,24 @@
 	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 	<!-- Template CSS -->
-	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
-	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-	<link rel="stylesheet" href="{% static 'css/nexus.css' %}">
-	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-	<link rel="stylesheet" href="{% static 'css/create.css' %}">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <link rel="stylesheet" href="{% static 'css/comments.css' %}">
-	<link rel="stylesheet" href="{% static 'css/flips.css' %}">
-	<link rel="stylesheet" href="{% static 'css/story.css' %}">
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/nexus.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/comments.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/flips.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/story.css' %}" rel="stylesheet">
+	
 	<!-- Google Fonts-->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/editing.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/flips.js' %}"></script>
 </head>
 <body>
 	
-	<!-- navbar -->
-	<nav class="navbar navbar-default">
+		<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -48,7 +43,7 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a id="create" href="#">Create new story</a></li>
+	      	<li><a id="create" href="#">Creat new story</a></li>
 	        <li><a id="log-in" href="#">Log in</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">more <span class="caret"></span></a>
@@ -106,56 +101,188 @@
    					<div class="cont_form_sign_up">
 						<a href="#" onclick="ocultar_login_sign_up()"><img src="{% static 'img/ic_keyboard.png' %}"></a>
 						   <h2>SIGN UP</h2>
-						<input type="text" placeholder="Email" />
-						<input type="text" placeholder="User" />
-						<input type="password" placeholder="Password" />
-						<input type="password" placeholder="Confirm Password" />
-						<button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+							{% csrf_token %}
+                            {{ form.as_p }}
+							<input type="text" placeholder="Email" onclick="cambiar_sign_up()" />
+							<input type="text" placeholder="User" name="user" id="user"/>
+							<input type="text" placeholder="Password" name="password" id="password"/>
+							<input type="text" placeholder="Confirm Password" name="account" id="account"/>
+							<button class="btn_sign_up"  type="submit">SIGN UP</button>
+						
   					</div>
     			</div>
   			</div>
  		</div>
 	</div><!-- /login -->
-
-	<!-- create -->
-	<div class=" black-background " id="create_page" style="display:none;">
-		<div class="create-background col-md-offset-2 col-md-8 
-			col-xs-offset-2 col-xs-6 mid">
-			<div class="row">	
-				<div class="col-md-12">	
-				 <form  class="form" action="{% url 'addpost' %}" method="POST" role="form">
-				 {% csrf_token %}
-                 {{ form.as_p }}
-					<div class="col-md-offset-4 col-md-7 col-xs-10">
-						<h1>建立你的故事</h1>
-					</div>
-					<div class="icon-top" >
-						<a id="close_create" href="#"><img src="{% static 'img/ic_clear_b.png' %}"></a>
-					</div>
-				</div>
-				<!-- 標題取值 -->
-				<div class="ttop">
-					<input type="text"  id="new-title" class="input-area col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8"
-					placeholder="標題"  name="new-title"/>
-				</div>
-				<!-- 第一句取值 -->
-	            <div class="tttop">
-	            	<textarea class="text-area col-md-offset-2 col-md-8 col-xs-12" id="first-sentence "  name="first-sentence" 
-	            	rows="6" cols="50" placeholder="開頭"></textarea>
-	            </div>
-				<div>
-					<button type="submit">send</button>
-				</div>
-				</form>
-	        </div>
-		</div>					 				
-	</div>
+	
+	
+	
+	
+<!-- create -->
+  <div class=" black-background " id="create_page" style="display:none;">
+    <div class="create-background col-md-offset-2 col-md-8 
+      col-xs-offset-2 col-xs-6 mid">
+      <div class="row"> 
+        <div class="col-md-12"> 
+         <form  class="form" action="{% url 'addpost' %}" method="POST" role="form">
+         {% csrf_token %}
+         {{ form.as_p }}
+          <div class="col-md-offset-4 col-md-7 col-xs-10">
+            <h1>建立你的故事</h1>
+          </div>
+          <div class="icon-top" >
+            <a id="close_create" href="#"><img src="{% static 'img/ic_clear_b.png' %}"></a>
+          </div>
+        </div>
+        <!-- 標題取值 -->
+        <div class="ttop">
+          <input type="text"  id="new-title" class="input-area col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8"
+          placeholder="標題"  name="new-title"/>
+        </div>
+        <!-- 第一句取值 -->
+              <div class="tttop">
+                <textarea class="text-area col-md-offset-2 col-md-8 col-xs-12" id="first-sentence "  name="first-sentence" 
+                rows="6" cols="50" placeholder="開頭"></textarea>
+              </div>
+        <div>
+          <button type="submit">send</button>
+        </div>
+        </form>
+          </div>
+    </div>                  
+  </div>
+	
+	
+	
     
     <!-- editting -->
-	
-                                    	
-        {% block content %}
-        {% endblock content %}
+
+	<div id="content" class="container">
+    <div class="row margin-vert-30">
+        <div class="col-md-12">
+			<div class="blog-post"> 
+                <div class="blog-item-header">
+				    <div class="blog-post-date pull-left">
+				        <span class="day">{{ post.created_day }}</span>
+						<span class="month">{{ post.created_mon }}</span>
+				    </div>
+			        <h2><a href="#">{{ post.storyTitle }}</a>
+					<div class="mode-button">
+						<button type="button" class="btn btn-black" id="flipper-edit">edit</button>
+						<button type="button" class="btn btn-black" id="flipper-view">view</button>
+						<button type="button" class="btn btn-black"><a href="{% url 'collection_e' %}">back</a></button>
+						</div>
+					</h2>
+				    </div>           
+				    <div class="blog-item">	        
+                        <div class="blog-item-footer">
+							<!-- Comments -->
+                            <div class="blog-recent-comments panel panel-default margin-bottom-30 margin-top-30">
+	                            <div class="panel-heading">
+                        		    <h3>Comments</h3>
+	                            </div>
+								
+
+                                <div class="flip-container">
+                                    <div class="flipper">
+                
+        
+                                        <div class="comments-container front" id="front">
+									
+                                            <ul id="comments-list" class="comments-list">
+                                                {% for story in story %}
+                                                <li>
+                                                    <div class="comment-main-level" >
+                                                    <!-- Avatar -->
+                                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                                                    <!-- Contenedor del Comentario -->
+                                                        <div class="comment-box">
+                                                            <div class="comment-head">
+                                                                <h6 class="comment-name by-author"><a href="#">Agustin Ortiz</a></h6>
+                                                                <span>{{ story.time }}</span>
+                                                                    
+                                                                    <a class = "likes" href="{% url 'likes' story.pk %}">
+                                                                    
+                                                                        <i class="fa fa-heart" >{{ story.likes }}</i>
+                                                    
+                                                                    </a>
+                                                                
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                {{ story.context }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                {%  endfor %}
+              
+                                            </ul>
+										
+		                                </div>
+	                                    <div class="back">
+									
+                                 
+                                            {% for story in story %}
+                                            <div class="row">
+                                                <div class="col-md-12 padding-horiz-40 padding-vert-10">
+	                                                <h4>{{ story.context }}</h4>
+	                                            </div>
+                                            </div>
+                                            {%  endfor %}
+                                 
+                                  
+		                                    <div class="row">
+				                                </br></br>
+                                                <div class="col-md-12 padding-horiz-40 padding-vert-10">
+                                                    <h3 class="date"><i class="fa fa-clock-o"></i> 10 May 2013</h3>
+                                                </div>
+                                            </div>
+                                  
+                                  
+			                            </div>
+                                     </div>
+        	                    </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                           
+                <a href="#"><i class="fa fa-file fa-2x"></i>&nbsp;<b>Follow</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a onclick="countDown()" ><i class="fa fa-pencil fa-2x"></i>&nbsp;<b>Edit</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#"><i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b></a>
+                <hr class="end-line"><br/><br/>
+                            
+                <div class="blog-author panel panel-default margin-bottom-30 acomment" id="comment">
+					<div class="panel-heading">
+						<h3>Leave a Comment</h3>
+					</div>
+					<div class="panel-body">
+						
+	                    <div class="row">
+		                    <div class="col-md-12">
+			                    <form id="add-contact-form" class="form" action="#" method="POST" role="form">
+			                        {% csrf_token %}
+                                    {{ form.as_p }}
+				                    <div class="row margin-bottom-20">
+                                        <div class="col-md-10">
+						                    <textarea rows="8" maxlength="30" class="form-control" id="context" name="context" style="resize:none;"></textarea>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="comment-avatar">
+                                                <img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="">
+                                            </div>
+                                        </div>
+				                    </div>
+					                <button class="btn btn-primary" type="submit">Send Message</button>
+				                </form>
+		                    </div>        
+	                   </div>
+                    </div>
+				</div>
+			</div>	
+		</div>
+	</div>
+	</div>
               
                                    
                               
@@ -170,5 +297,6 @@
 	<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/editing.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/flips.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
 </body>
 </html>

@@ -12,9 +12,6 @@ class Story(models.Model):
     post_id = models.IntegerField(default=0)
     story_id = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
-
-    def __str__(self):
-    	return self.context
     
     
 class Post(models.Model):
@@ -24,9 +21,11 @@ class Post(models.Model):
 	created_mon = models.CharField(max_length=25)
 	post_likes = models.IntegerField(default=0)
 	firstSentence = models.TextField(max_length=100)
-
-	def __str__(self):
-		return self.storyTitle
+	
+class User(models.Model):
+	name = models.CharField(max_length=25,null=True)
+	account = models.CharField(max_length=25,null=True)
+	password = models.CharField(max_length=25)
 	
 
     

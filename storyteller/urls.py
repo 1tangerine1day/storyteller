@@ -21,11 +21,12 @@ from storyteller_app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^story/(?P<pk>\d+)/', views.show, name='story'),
+    url(r'^story/(?P<pk>\d+)/', views.story, name='story'),
     url(r'^likes/(?P<pk>\d+)/', views.likes, name='likes'),
     url(r'^post_likes/(?P<pk>\d+)/', views.post_likes, name='post_likes'),
     url(r'^finish/', views.collection_f, name='collection_f'),
     url(r'^post/', views.addpost, name = 'addpost'),
+    url(r'^adduser/', views.adduser, name = 'adduser'),
     url(r'^hot/', views.hot_sort, name = 'hot_sort'),
     url(r'^new/', views.new_sort, name = 'new_sort'),
     url(r'^$', views.index, name='index'),

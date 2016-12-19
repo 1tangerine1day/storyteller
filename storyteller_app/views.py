@@ -3,17 +3,17 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 # Create your views here.
-from .forms import AddForm, AddForm2
-from .models import Story, Post
+from .forms import AddForm, AddForm2, userForm
+from .models import Story, Post, User
 from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
 
 #global
-post_list  = Post.objects.all()
+
     
         
-def show(request, pk):
+def story(request, pk):
     
     check_pk = pk
     
@@ -37,7 +37,7 @@ def show(request, pk):
             #return HttpResponseRedirect(url)
             story_list = Story.objects.filter(post_id=check_pk).all()
             post_story = Post.objects.get(pk=check_pk)
-            return render(request, 'storyteller_app/show.html',{'story': story_list, 'post': post_story})
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
             
         
         else:
@@ -46,12 +46,12 @@ def show(request, pk):
             #return HttpResponseRedirect(url)
             story_list = Story.objects.filter(post_id=check_pk).all()
             post_story = Post.objects.get(pk=check_pk)
-            return render(request, 'storyteller_app/show.html',{'story': story_list, 'post': post_story})
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
     
     else:
         story_list = Story.objects.filter(post_id=check_pk).all()
         post_story = Post.objects.get(pk=check_pk)
-        return render(request, 'storyteller_app/show.html',{'story': story_list, 'post': post_story})
+        return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
  
  
  
@@ -77,8 +77,7 @@ def likes(request, pk):
     
 def collection_e(request):
     
-    global post_list
-    
+    post_list  = Post.objects.all()
     
     return render(request,'storyteller_app/collection_e.html',{
         'post_list': post_list,
@@ -104,7 +103,7 @@ def collection_f(request):
     
 def addpost(request):
     
-    global post_list
+    post_list  = Post.objects.all()
 
     if request.method == 'POST':
         
@@ -118,7 +117,7 @@ def addpost(request):
                 created_at = strftime("%Y %b %d",localtime()),
                 created_day = strftime("%d",localtime()),
                 created_mon = strftime("%b",localtime()),
-                post_like = 0,
+                post_likes = 0,
                 firstSentence = first_sentence,
             )
             
@@ -136,9 +135,11 @@ def addpost(request):
             return redirect("story",intopk.pk)
         
         else:
+            post_list  = Post.objects.all()
             return render(request,'storyteller_app/collection_e.html',{'post': post_list})
     
     else:
+        post_list  = Post.objects.all()
         return render(request,'storyteller_app/collection_e.html',{'post': post_list})
 
 
@@ -161,8 +162,6 @@ def index(request):
 
 def post_likes(request, pk):
     
-    global post_list
-    
     temp_pk = pk
     
     Post.objects.filter(pk=temp_pk).update(post_likes = F('post_likes')+1)
@@ -181,7 +180,6 @@ def post_likes(request, pk):
     
 def hot_sort(request):
     
-    global post_list
     
     post_list = Post.objects.all().order_by('-post_likes')
     
@@ -195,11 +193,40 @@ def hot_sort(request):
     
 def new_sort(request):
     
-    global post_list
-    
     post_list = Post.objects.all().order_by('-pk')
     
     return render(request, 'storyteller_app/collection_e.html',{'post_list': post_list})
     
+  
+  
+  
+  
+  
+def adduser(request):
+    if request.method == 'POST':
+        
+        django_form = userForm(request.POST)
+        if django_form.is_valid():
+            
+            new_name = django_form.data.get("name")
+            new_account = django_form.data.get("account")
+            new_password = django_form.data.get("password")
+            
+            User.objects.create(
+                name = new_name,
+                account = new_account,
+                password = new_password,
+            )
+            
+           
+            
+
+            return HttpResponseRedirect("/")
+        
+        else:
+            return HttpResponseRedirect("/")
     
+    else:
+        return HttpResponseRedirect("/")
+
     
