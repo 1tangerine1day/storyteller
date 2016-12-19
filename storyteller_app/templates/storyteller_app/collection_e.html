@@ -103,7 +103,16 @@
   					</div>
    					<div class="cont_form_sign_up">
 						<a href="#" onclick="ocultar_login_sign_up()"><img src="{% static 'img/ic_keyboard.png' %}assets/img/ic_keyboard.png"></a>
-						   <h2>SIGN UP</h2>
+							<h2>SIGN UP</h2>
+						   	{% block content %}
+    						<form method="post" action=".">{% csrf_token %}
+        						<table border="0">
+            						{{ form.as_table }}
+        						</table>
+        						<button type="submit" value="Register">Register</button>
+        						<!--<button type="button" onclick="window.location.href='/' ">Login</button>-->
+    						</form>
+							{% endblock %}
 						<!--<input type="text" placeholder="Email" />-->
 						<!--<input type="text" placeholder="User" />-->
 						<!--<input type="password" placeholder="Password" />-->
