@@ -1,5 +1,5 @@
 from django import forms
-from .models import Story,Post
+from .models import Story,Post,Signup
 
 class AddForm(forms.Form):
     

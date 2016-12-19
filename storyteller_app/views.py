@@ -118,5 +118,6 @@ def addpost(request):
         return render(request,'storyteller_app/collection_e.html',{'post': post_list})
 
 
+
 def index(request):
     return render(request, 'storyteller_app/index.html')

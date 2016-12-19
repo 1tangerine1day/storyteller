@@ -22,4 +22,5 @@ class Post(models.Model):
 	firstSentence = models.TextField(max_length=100)
 	
 
+
     
