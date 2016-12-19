@@ -40,8 +40,10 @@ def story(request, pk):
             #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
             
             intopk = Story.objects.get(pk=check_pk)
-            return redirect("story",intopk.post_id)
-            
+            #return redirect("story",intopk.post_id)
+            story_list = Story.objects.filter(post_id=check_pk).all()
+            post_story = Post.objects.get(pk=check_pk)
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
         
         else:
             #return HttpResponseRedirect(request, 'mycontacts/show.html',{'story': story_list})   
@@ -56,6 +58,7 @@ def story(request, pk):
         post_story = Post.objects.get(pk=check_pk)
         
         return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+        
  
  
  
@@ -184,8 +187,11 @@ def in_post_likes(request, pk):
     
     Post.objects.filter(pk=temp_pk).update(post_likes = F('post_likes')+1)
     
-    return redirect("story",intopk.post_id)
-    
+    #return redirect("story",intopk.post_id)
+    story_list = Story.objects.filter(post_id=temp_pk).all()
+    post_story = Post.objects.get(pk=temp_pk)
+        
+    return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
  
  
  
