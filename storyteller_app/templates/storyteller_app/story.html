@@ -137,12 +137,12 @@
 				<!-- 標題取值 -->
 				<div>
 					<input type="text"  id="new-title" class="ttop input-area col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8"
-					placeholder="標題"  name="new-title"/>
+					placeholder="標題"  name="new-title" maxlength="10"/>
 				</div>
 				<!-- 第一句取值 -->
 	            <div>
 	            	<textarea class="ttop text-area col-md-offset-2 col-md-8 col-xs-12" id="first-sentence "  name="first-sentence" 
-	            	rows="5" cols="50" placeholder="開頭"></textarea>
+	            	rows="5" cols="50" placeholder="開頭" maxlength="20"></textarea>
 	            </div>
 	            <div class="">
 					<button type="submit" class="btn-area ttop col-md-offset-8 col-md-2">send</button>
@@ -265,7 +265,7 @@
                                     {{ form.as_p }}
 				                    <div class="row margin-bottom-20">
                                         <div class="col-md-10">
-						                    <textarea rows="8" maxlength="30" class="form-control" id="context" name="context" style="resize:none;"></textarea>
+						                    <textarea rows="8" maxlength="50" class="form-control" id="context" name="context" style="resize:none;"></textarea>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="comment-avatar">
