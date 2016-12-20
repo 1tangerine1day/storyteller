@@ -35,15 +35,16 @@ def story(request, pk):
             
             #url = reverse('story', kwargs={'story': check_pk})
             #return HttpResponseRedirect(url)
-            story_list = Story.objects.filter(post_id=check_pk).all()
-            post_story = Post.objects.get(pk=check_pk)
             #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+            try:
+                intopk = Story.objects.get(pk=check_pk)
+            except Story.DoesNotExist:
+                intopk = Story.objects.order_by('-pk')[0]
             
-            intopk = Story.objects.get(pk=check_pk)
-            #return redirect("story",intopk.post_id)
-            story_list = Story.objects.filter(post_id=check_pk).all()
-            post_story = Post.objects.get(pk=check_pk)
-            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+            return HttpResponseRedirect("story",intopk.pk)
+            #story_list = Story.objects.filter(post_id=check_pk).all()
+            #post_story = Post.objects.get(pk=check_pk)
+            #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
         
         else:
             #return HttpResponseRedirect(request, 'mycontacts/show.html',{'story': story_list})   
@@ -183,13 +184,13 @@ def post_likes(request, pk):
 def in_post_likes(request, pk):
     
     temp_pk = pk
-    intopk = Story.objects.get(pk=temp_pk)
     
     Post.objects.filter(pk=temp_pk).update(post_likes = F('post_likes')+1)
     
     #return redirect("story",intopk.post_id)
     story_list = Story.objects.filter(post_id=temp_pk).all()
     post_story = Post.objects.get(pk=temp_pk)
+    
         
     return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
  

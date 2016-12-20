@@ -260,7 +260,7 @@
 						
 	                    <div class="row">
 		                    <div class="col-md-12">
-			                    <form id="add-contact-form" class="form" action="#" method="POST" role="form">
+			                    <form id="add-contact-form" class="form" action="{% url 'story' post.pk %}" method="POST" role="form">
 			                        {% csrf_token %}
                                     {{ form.as_p }}
 				                    <div class="row margin-bottom-20">
