@@ -34,6 +34,7 @@
 	    color: gray; 
 	}
 }
+
 /* Slogan Adjust */
 p.site-slogan {
     right: 0px;
@@ -51,12 +52,14 @@ body{
 	padding-bottom: 15px;
 	background-color: black;
 	border: 1px solid black;
+	height: 20px;
 }
 
 .navbar-brand {
 	font-size: 40px;
-	padding-top: 0px;
+	padding-top: -0px;
 	padding-bottom: 0px;
+	margin-top: -5px;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {;
@@ -80,9 +83,11 @@ body{
 }
 
 #main-title {
-   padding-top: 10px;
+   padding-top: 0px;
    font-family: cursive;
+   font-size: 20px;
    color: #F4F1EA;
+   height: 20px;
 }
 
 #log-in{
@@ -96,19 +101,33 @@ body{
 
 .navbar-default .navbar-nav > li > a {
  	color: #F4F1EA;
+ 	background-color: black;
+ 	padding-top: 0px;
+ 	font-size: 13px;
+ 	margin-top: -5px;
+ 	height: 25px;
  }
 
 .navbar-default .navbar-nav > li > a:hover {
-	font-weight: 600;
 	color: #F4F1EA;
+	font-weight: 600;
 	background-color: black;
 }
 
 .navbar-default .navbar-nav > li > a:visited {
-	font-weight: 600;
 	color: #F4F1EA;
 	background-color: black;
 }
+
+.navbar-default .navbar-nav > li > a:link {
+	color: #F4F1EA;
+	background-color: black;
+}
+
+.navbar-toggle {
+	margin-top: -10px;
+}
+
 
 /* finish */
 figure > figcaption > span {
