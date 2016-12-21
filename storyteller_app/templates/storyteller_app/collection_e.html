@@ -177,7 +177,7 @@
 	</div>
 	<!-- finished story -->
 	
-	<div class="row">
+<!-- 	<div class="row">
 	{% for post in post_list %}	
 	{% if forloop.counter0|divisibleby:3 %}
 	
@@ -213,7 +213,7 @@
 	</div>
 	{% endif %}
 	{% endfor %}
-</div><!-- /.row -->
+</div> --><!-- /.row
 	<div class="text-center">
 	   <ul class="pagination">
 	      <li><a href="#">&laquo;</a></li>
@@ -224,8 +224,74 @@
 	      <li><a href="#">5</a></li>
 	      <li><a href="#">&raquo;</a></li>
 	   </ul>
+	</div> -->
+
+{% for post in contacts %}
+    {# Each "contact" is a Contact model object. #}
+    <!-- {{ contact.full_name|upper }}<br /> -->
+    {% if forloop.counter0|divisibleby:3 %}
+	
+		<div class="col-md-offset-3 col-md-2 person-details">
+		
+			<figure class="editing" id="story1">
+				<figcaption>
+				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
+				<span>{{ post.firstSentence }}....</span>
+				</figcaption>
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
+			</figure>
+			
+			<ul class="list-inline person-details-icons">
+				<li><p>{{ post.post_likes }}</p></li>
+				<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
+			</ul>
+		</div>
+	
+	{% else %}
+	<div class="col-md-2 person-details">
+			<figure class="editing" id="story1">
+				<figcaption>
+				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
+				<span>{{ post.firstSentence }}....</span>
+				</figcaption>
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
+			</figure>
+		<ul class="list-inline person-details-icons">
+			<li><p>{{ post.post_likes }}</p></li>
+			<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
+		</ul>
 	</div>
+	{% endif %}
+	{% endfor %}
 
+<!-- <div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div> -->
+
+<div class="text-center">
+	   <ul class="pagination">
+	    {% if contacts.has_previous %}
+	    <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
+	    {% endif %}
+	    {% for page in pages%}
+	    <li><a href="3">{{page}}</a></li>
+	    {% endfor %}
+	       {% if contacts.has_next %}
+	      <li><a href="?page={{ contacts.next_page_number }}">&raquo;</a></li>
+	       {% endif %}
+	   </ul>
+	</div> 
 </body>
 </html>

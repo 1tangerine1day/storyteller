@@ -8,6 +8,7 @@ from .models import Story, Post, User
 from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #global
 
@@ -87,9 +88,20 @@ def collection_e(request):
     
     post_list  = Post.objects.all()
     
-    return render(request,'storyteller_app/collection_e.html',{
-        'post_list': post_list,
-    })
+    contact_list = Post.objects.all()
+    paginator = Paginator(contact_list, 9) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+
+    return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
     
   
   
@@ -201,9 +213,20 @@ def in_post_likes(request, pk):
 def hot_sort(request):
     
     
-    post_list = Post.objects.all().order_by('-post_likes')
-    
-    return render(request, 'storyteller_app/collection_e.html',{'post_list': post_list})
+    contact_list = Post.objects.all().order_by('-post_likes')
+    paginator = Paginator(contact_list, 9) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+
+    return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
 
     
@@ -213,11 +236,20 @@ def hot_sort(request):
     
 def new_sort(request):
     
-    post_list = Post.objects.all().order_by('-pk')
-    
-    return render(request, 'storyteller_app/collection_e.html',{'post_list': post_list})
-    
-  
+    contact_list = Post.objects.all().order_by('-pk')
+    paginator = Paginator(contact_list, 9) # Show 25 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+
+    return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
   
   
   
@@ -247,3 +279,5 @@ def adduser(request):
         return HttpResponseRedirect("/")
 
     
+
+ 
