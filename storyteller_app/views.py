@@ -3,8 +3,8 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 # Create your views here.
-from .forms import AddForm, AddForm2, userForm
-from .models import Story, Post, User
+from .forms import AddForm, AddForm2
+from .models import Story, Post
 from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
@@ -255,32 +255,7 @@ def new_sort(request):
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
   
   
-  
-  
-def adduser(request):
-    if request.method == 'POST':
-        
-        django_form = userForm(request.POST)
-        if django_form.is_valid():
-            
-            new_name = django_form.data.get("name")
-            new_account = django_form.data.get("account")
-            new_password = django_form.data.get("password")
-            
-            User.objects.create(
-                name = new_name,
-                account = new_account,
-                password = new_password,
-            )
-
-            return HttpResponseRedirect("/")
-        
-        else:
-            return HttpResponseRedirect("/")
-    
-    else:
-        return HttpResponseRedirect("/")
-
+ 
     
 
  

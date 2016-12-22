@@ -1,5 +1,5 @@
 from django import forms
-from .models import Story,Post,User
+from .models import Story,Post
 
 class AddForm(forms.Form):
     
@@ -13,8 +13,3 @@ class AddForm2(forms.Form):
     	model = Post
     	fields = ('storyTitle', 'created_at', 'created_day', 'created_mon','post_likes', 'firstSentence',)
 
-class userForm(forms.Form):
-    
-    class Meta:
-    	model = User
-    	fields = ('name', 'account', 'password',)

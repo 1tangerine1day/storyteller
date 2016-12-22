@@ -22,10 +22,6 @@ class Post(models.Model):
 	post_likes = models.IntegerField(default=0)
 	firstSentence = models.CharField(max_length=25)
 	
-class User(models.Model):
-	name = models.CharField(max_length=25,null=True)
-	account = models.CharField(max_length=25,null=True)
-	password = models.CharField(max_length=25)
-	
+
 
     
