@@ -31,5 +31,11 @@ urlpatterns = [
     url(r'^new/', views.new_sort, name = 'new_sort'),
     url(r'^$', views.index, name='index'),
     url(r'^editing/', views.collection_e, name='collection_e'),
+    url(r'^personal/', views.personal, name='personal'),
     
+    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^register/$', views.register),
+    url(r'^register/success/$', views.register_success),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', views.logout_page),
 ]

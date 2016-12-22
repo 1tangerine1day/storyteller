@@ -3,12 +3,17 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 # Create your views here.
-from .forms import AddForm, AddForm2
+from .forms import AddForm, AddForm2, RegistrationForm, User
 from .models import Story, Post
 from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
+from django.template import RequestContext
+from django.contrib.auth import logout
 
 #global
 
@@ -253,6 +258,42 @@ def new_sort(request):
         contacts = paginator.page(paginator.num_pages)
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
+    
+    
+    
+    
+@login_required
+def personal(request):
+    return render(request,'storyteller_app/personal.html')
+    
+    
+def login(request):
+    return render_to_response('registration/login.html',)      
+
+
+@csrf_protect
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(
+            username=form.cleaned_data['username'],
+            password=form.cleaned_data['password1'],
+            email=form.cleaned_data['email']
+            )
+            return HttpResponseRedirect('/register/success/')
+    else:
+        form = RegistrationForm()
+    variables = RequestContext(request, {'form': form })
+ 
+    return render_to_response('registration/register.html', variables,)
+ 
+def register_success(request):
+    return render_to_response('registration/success.html',)
+ 
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect('/')
   
   
  
