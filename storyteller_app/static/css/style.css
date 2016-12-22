@@ -176,8 +176,10 @@ body{
     padding-bottom: 15px;
     background-color: black;
     border: 1px solid black;
+    border-radius: 0px 0px 4px 4px;
     height: 20px;
 }
+
 
 .navbar-brand {
     font-size: 40px;
@@ -190,8 +192,14 @@ body{
     background-color: gray; 
 }
 
-.dropdown-menu {
+.navbar-nav > li > .dropdown-menu {
     background-color: white;
+    margin-top: 12px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+    background-color: white;
+    margin-top: 12px;
 }
 
 .caret {

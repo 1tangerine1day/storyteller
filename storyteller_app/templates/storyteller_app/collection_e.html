@@ -44,8 +44,10 @@
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a id="create" href="#">Create new story</a></li>
-	        <li><a id="log-in" href="#">Log in</a></li>
+	      	<li><a id="log-in" href="#">Log in</a></li>
+	      	<li><a id="create" href="#">Create</a></li>
+	      	<li><a href="{% url 'collection_f' %}">Finished Story</a></li>
+	      	<li><a href="{% url 'collection_e' %}">Editing Story</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
@@ -165,8 +167,7 @@
 		<div class="col-md-offset-3 col-md-4 col-xs-offset-3 col-xs-9">
 			<h2>Editing Story</h2>
 		</div>
-		<div class="col-md-offset-0 col-md-3 col-xs-offset-3 col-xs-9">
-			<a href="{% url 'collection_f' %}"><button type="button" class="btn btn-info">Finished Story</button></a>
+		<div class="col-md-offset-1 col-md-3 col-xs-offset-3 col-xs-9">
 			<a  href="{% url 'new_sort' %}"><button class="btn btn-black">new</button></a>
 			<a  href="{% url 'hot_sort' %}"><button class="btn btn-black">hot</button></a>
 		</div>
@@ -280,12 +281,13 @@
     </span>
 </div> -->
 
-<div class="text-center">
+<div class="text-center row">
+	<div class="col-md-12">
 	   <ul class="pagination">
 	    {% if contacts.has_previous %}
 	    <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
 	    {% endif %}
-	    {% for page in pages%}
+	    {% for page in pages %}
 	    <li><a href="3">{{page}}</a></li>
 	    {% endfor %}
 	       {% if contacts.has_next %}
@@ -293,5 +295,6 @@
 	       {% endif %}
 	   </ul>
 	</div> 
+</div>
 </body>
 </html>
