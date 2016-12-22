@@ -13,9 +13,9 @@ class Story(models.Model):
     story_id = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     
-    
 class Post(models.Model):
 	storyTitle = models.CharField(max_length=25)
+	created_id = models.CharField(max_length=25)
 	created_at = models.CharField(max_length=25)
 	created_day = models.CharField(max_length=25)
 	created_mon = models.CharField(max_length=25)

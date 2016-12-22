@@ -11,7 +11,7 @@ class AddForm2(forms.Form):
     
     class Meta:
     	model = Post
-    	fields = ('storyTitle', 'created_at', 'created_day', 'created_mon','post_likes', 'firstSentence',)
+    	fields = ('storyTitle', 'create_id', 'created_at', 'created_day', 'created_mon','post_likes', 'firstSentence',)
 
 class userForm(forms.Form):
     

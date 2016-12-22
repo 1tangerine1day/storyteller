@@ -239,12 +239,12 @@
 				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
 				<span>{{ post.firstSentence }}....</span>
 				</figcaption>
-				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.created_id %}">join edit</a></button>
 			</figure>
 			
 			<ul class="list-inline person-details-icons">
 				<li><p>{{ post.post_likes }}</p></li>
-				<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
+				<li><a href="{% url 'post_likes' post.created_id %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
 			</ul>
 		</div>
 	
@@ -255,11 +255,11 @@
 				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
 				<span>{{ post.firstSentence }}....</span>
 				</figcaption>
-				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.created_id %}">join edit</a></button>
 			</figure>
 		<ul class="list-inline person-details-icons">
 			<li><p>{{ post.post_likes }}</p></li>
-			<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
+			<li><a href="{% url 'post_likes' post.created_id %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
 		</ul>
 	</div>
 	{% endif %}
@@ -287,8 +287,12 @@
 	    {% if contacts.has_previous %}
 	    <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
 	    {% endif %}
-	    {% for page in pages %}
-	    <li><a href="3">{{page}}</a></li>
+	    {% for page in contacts.paginator.page_range %}
+		    {% ifequal page  contacts.number %}
+	      		<li class="active"><a>{{ page }}</a></li>
+	    	{% else %}
+	      		<li><a href="?page={{ page }}">{{ page }}</a></li>
+	    	{% endifequal %}
 	    {% endfor %}
 	       {% if contacts.has_next %}
 	      <li><a href="?page={{ contacts.next_page_number }}">&raquo;</a></li>

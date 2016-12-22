@@ -9,15 +9,12 @@ from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import time
 
-#global
-
-    
-        
+#leave message 
 def story(request, pk):
     
     check_pk = pk
-    
     if request.method == 'POST':
         
         django_form = AddForm(request.POST)
@@ -30,19 +27,16 @@ def story(request, pk):
                 time = strftime("%Y %b %d %X",localtime()),
                 post_id = check_pk,
                 likes = 0,
-                )
-                
-            
-            
+             )   
             #url = reverse('story', kwargs={'story': check_pk})
             #return HttpResponseRedirect(url)
             #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
             try:
-                intopk = Story.objects.get(pk=check_pk)
+                intopk = Post.objects.get(created_id=check_pk)
             except Story.DoesNotExist:
-                intopk = Story.objects.order_by('-pk')[0]
+                intopk = Post.objects.order_by('-pk')[0]
             
-            return HttpResponseRedirect("story",intopk.pk)
+            return HttpResponseRedirect("story",intopk.created_id)
             #story_list = Story.objects.filter(post_id=check_pk).all()
             #post_story = Post.objects.get(pk=check_pk)
             #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
@@ -52,23 +46,16 @@ def story(request, pk):
             #url = reverse('story', kwargs={'story': check_pk})
             #return HttpResponseRedirect(url)
             story_list = Story.objects.filter(post_id=check_pk).all()
-            post_story = Post.objects.get(pk=check_pk)
+            post_story = Post.objects.get(created_id=check_pk)
             return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
     
     else:
         story_list = Story.objects.filter(post_id=check_pk).all()
-        post_story = Post.objects.get(pk=check_pk)
+        post_story = Post.objects.get(created_id=check_pk)
         
         return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
-        
- 
- 
- 
- 
- 
- 
- 
-        
+     
+#message like   
 def likes(request, pk):
     
     temp_pk = pk
@@ -77,19 +64,12 @@ def likes(request, pk):
     intopk = Story.objects.get(pk=temp_pk)
     
     return redirect("story",intopk.post_id)
-    
-    
-    
-    
-    
-    
-    
+
+# collection_ehtml paginator
 def collection_e(request):
-    
-    post_list  = Post.objects.all()
-    
-    contact_list = Post.objects.all()
-    paginator = Paginator(contact_list, 9) # Show 25 contacts per page
+    limit = 9
+    contact_list = Post.objects.all().order_by('-pk')
+    paginator = Paginator(contact_list, limit) # Show 25 contacts per page
 
     page = request.GET.get('page')
     
@@ -103,18 +83,13 @@ def collection_e(request):
         contacts = paginator.page(paginator.num_pages)
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
-    
+
+# collection_f.html
 def collection_f(request):
     
     return render(request,'storyteller_app/collection_f.html')
-    
-    
-    
-    
-    
-    
-    
-    
+     
+#create a new story
 def addpost(request):
     
     post_list  = Post.objects.all()
@@ -128,6 +103,7 @@ def addpost(request):
             
             Post.objects.create(
                 storyTitle = new_title,
+                created_id = int(round(time.time() * 1000)),
                 created_at = strftime("%Y %b %d",localtime()),
                 created_day = strftime("%d",localtime()),
                 created_mon = strftime("%b",localtime()),
@@ -141,12 +117,12 @@ def addpost(request):
                 context =  first_sentence, 
                 auther = "auther",
                 time = strftime("%Y %b %d %X",localtime()),
-                post_id = intopk.pk,
+                post_id = intopk.created_id,
                 likes = 0,
-                )
+            )
             
 
-            return redirect("story",intopk.pk)
+            return redirect("story",intopk.created_id)
         
         else:
             post_list  = Post.objects.all()
@@ -156,29 +132,16 @@ def addpost(request):
         post_list  = Post.objects.all()
         return render(request,'storyteller_app/collection_e.html',{'post': post_list})
 
-
-
-
-
-
-
-
+#index.html
 def index(request):
     return render(request,'storyteller_app/index.html')
  
- 
- 
- 
- 
- 
- 
-    
-
+#story like
 def post_likes(request, pk):
     
     temp_pk = pk
-    Post.objects.filter(pk=temp_pk).update(post_likes = F('post_likes')+1)
-    contact_list = Post.objects.all()
+    Post.objects.filter(created_id=temp_pk).update(post_likes = F('post_likes')+1)
+    contact_list = Post.objects.all().order_by('-pk')
     paginator = Paginator(contact_list, 9) # Show 25 contacts per page
     page = request.GET.get('page')
 
@@ -192,32 +155,27 @@ def post_likes(request, pk):
         contacts = paginator.page(paginator.num_pages)
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
-    
-    
-   
-   
+
+#story like in chat room
 def in_post_likes(request, pk):
     
     temp_pk = pk
     
-    Post.objects.filter(pk=temp_pk).update(post_likes = F('post_likes')+1)
+    Post.objects.filter(created_id=temp_pk).update(post_likes = F('post_likes')+1)
     
     #return redirect("story",intopk.post_id)
     story_list = Story.objects.filter(post_id=temp_pk).all()
-    post_story = Post.objects.get(pk=temp_pk)
+    post_story = Post.objects.get(created_id=temp_pk)
     
         
     return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
- 
- 
- 
-    
-    
+
+#hot sort
 def hot_sort(request):
     
-    
+    limit = 9
     contact_list = Post.objects.all().order_by('-post_likes')
-    paginator = Paginator(contact_list, 9) # Show 25 contacts per page
+    paginator = Paginator(contact_list, limit) # Show 25 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -231,16 +189,12 @@ def hot_sort(request):
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
-
-    
-    
-    
-    
-    
+#new sort
 def new_sort(request):
-    
+
+    limit = 9
     contact_list = Post.objects.all().order_by('-pk')
-    paginator = Paginator(contact_list, 9) # Show 25 contacts per page
+    paginator = Paginator(contact_list, limit) # Show 25 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -253,10 +207,8 @@ def new_sort(request):
         contacts = paginator.page(paginator.num_pages)
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
-  
-  
-  
-  
+
+#add user  
 def adduser(request):
     if request.method == 'POST':
         
@@ -280,7 +232,3 @@ def adduser(request):
     
     else:
         return HttpResponseRedirect("/")
-
-    
-
- 
