@@ -27,11 +27,15 @@ urlpatterns = [
     url(r'^in_post_likes/(?P<pk>\d+)/', views.in_post_likes, name='in_post_likes'),
     url(r'^finish/', views.collection_f, name='collection_f'),
     url(r'^post/', views.addpost, name = 'addpost'),
-    url(r'^adduser/', views.adduser, name = 'adduser'),
     url(r'^hot/', views.hot_sort, name = 'hot_sort'),
     url(r'^new/', views.new_sort, name = 'new_sort'),
     url(r'^$', views.index, name='index'),
-    
     url(r'^editing/', views.collection_e, name='collection_e'),
+    url(r'^personal/', views.personal, name='personal'),
     
+    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^register/$', views.register),
+    url(r'^register/success/$', views.register_success),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', views.logout_page),
 ]
