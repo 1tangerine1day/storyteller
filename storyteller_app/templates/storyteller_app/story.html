@@ -16,19 +16,18 @@
 	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
 	<link rel="stylesheet" href="{% static 'css/nexus.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+	<link rel="stylesheet" href="{% static 'css/flips.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/create.css' %}">
     <link rel="stylesheet" href="{% static 'css/comments.css' %}">
-	<link rel="stylesheet" href="{% static 'css/flips.css' %}">
+	
 	<link rel="stylesheet" href="{% static 'css/story.css' %}">
-	<!-- Google Fonts-->
+	<!-- Google Fonts -->
 	<link href="http://fonts.googleapis.com/css?family=Lato:400,300" rel="stylesheet" type="text/css">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet" type="text/css">
 	
 	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/editing.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/flips.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
 
 </head>
@@ -113,7 +112,7 @@
         <div class="col-md-12">
         	
         	
-        	<div id="refresh_story">
+        	
 			<div class="blog-post" > 
                 <div class="blog-item-header">
 				    <div class="blog-post-date pull-left">
@@ -122,8 +121,8 @@
 				    </div>
 			        <h2><a href="#">{{ post.storyTitle }}</a>
 					<div class="mode-button">
-						<button type="button" class="btn btn-black" id="flipper-edit">edit</button>
-						<button type="button" class="btn btn-black" id="flipper-view">view</button>
+						<button type="button" class="btn btn-black" onclick = "flip_dialog2('')">edit</button>
+						<button type="button" class="btn btn-black" onclick = "flip_dialog('')">view</button>
 						<button type="button" class="btn btn-black"><a href="{% url 'collection_e' %}">back</a></button>
 						</div>
 					</h2>
@@ -138,10 +137,10 @@
 								
 
                                 <div class="flip-container">
-                                    <div class="flipper">
+                                    <div class="flipper" id="card">
                 
-        
-                                        <div class="comments-container front" id="front">
+        								<div class = "front" id="front">
+                                        <div class="comments-container">
 									
                                             <ul id="comments-list" class="comments-list">
                                                 {% for story in story %}
@@ -173,6 +172,7 @@
                                             </ul>
 										
 		                                </div>
+		                                </div>
 	                                    <div class="back">
 									
                                  
@@ -188,7 +188,9 @@
 		                                    <div class="row">
 				                                </br></br>
                                                 <div class="col-md-12 padding-horiz-40 padding-vert-10">
-                                                    <h3 class="date"><i class="fa fa-clock-o"></i> 10 May 2013</h3>
+                              
+                                                    <h3 class="date"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;&{{post.created_at}}</h3>
+
                                                 </div>
                                             </div>
                                   
@@ -201,13 +203,15 @@
                     </div>
                  </div>
                 
-                
+                <div id ="refresh_bottom">
                 <a onclick="likes_in_post({{post.created_id}});"><i class="fa fa-thumbs-up fa-2x"></i>&nbsp;<b>{{post.post_likes}}&nbsp;Likes</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="#"><i class="fa fa-file fa-2x"></i>&nbsp;<b>Follow</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="#"><i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b></a>
+                </div>
+                
                 <hr class="end-line"><br/><br/>
                 
-                </div> <!--refresh-->
+
                 
                           
                 <div class="blog-author panel panel-default margin-bottom-30 acomment" id="comment">
@@ -247,6 +251,7 @@
                               
     <!-- /editting -->
     <script type="text/javascript" src="{% static 'js/refresh_story.js' %}"></script>
+
 
 </body>
 </html>

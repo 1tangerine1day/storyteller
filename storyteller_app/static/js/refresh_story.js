@@ -1,5 +1,5 @@
 
- 
+var mode = 1;
 var timerRef;
 
 function doSomething() {
@@ -7,7 +7,10 @@ function doSomething() {
     
         $.ajax(iurl, {
             success: function(data) {
-                $("#refresh_story").html(data);
+                $("#card").html(data);
+                if (mode==0){
+                    document.getElementById("front").style.visibility='hidden';
+                }
             },
         });
 }
@@ -31,7 +34,8 @@ function likes_story(id) {
 
         // handle a successful response
         success : function(data) {
-            $('#refresh_story').html(data);
+            alert ("not work"  + data);
+            $('#card').html(data);
 
         },
 
@@ -56,7 +60,7 @@ function likes_in_post(id) {
 
         // handle a successful response
         success : function(data) {
-            $('#refresh_story').html(data);
+            $('#refresh_bottom').html(data);
 
         },
 
@@ -76,12 +80,40 @@ var frm = $('#add_story_form');
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (data) {
-                $("#refresh_story").html(data);
+                $("#card").html(data);
                 document.getElementById("context").value = "";
             },
             error: function(data) {
-                $("#refresh_story").html("<h1>You did not login yet.</h1>");
+                $("#card").html("<h1>You did not login yet.</h1>");
             }
         });
         return false;
     });
+    
+
+function flip_dialog(message, html) {	
+    
+	$('.flip-container').addClass('hover');
+	mode = 0;
+	document.getElementById("front").style.visibility='hidden';
+
+	$("#comment").hide(1500);
+	$(".end-line").hide(2000);
+	
+  	
+}
+
+
+function flip_dialog2(message, html) {
+	
+	$('.flip-container').removeClass('hover');
+	mode = 1;
+	document.getElementById("front").style.visibility='visible';
+	
+	$("#comment").show(1500);
+	$(".end-line").show(2000);
+
+	
+}
+ 
+    

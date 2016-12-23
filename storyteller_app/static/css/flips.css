@@ -1,7 +1,3 @@
-/**
- * 	flip card css credit to David walsh
- * http://davidwalsh.name/css-flip
- */
 .flip-container {
 	-webkit-perspective: 1000;
 	-moz-perspective: 1000;
@@ -16,9 +12,8 @@
 	transform: rotateY(180deg);
 }
 
-.flip-container, .back {
-	width: 800px;
-	margin: 0px auto;
+.flip-container, .front, .back {
+	width: 100%;
 }
 
 /* flip speed goes here */
@@ -35,7 +30,7 @@
 }
 
 /* hide back of pane during swap */
-.back {
+.front, .back {
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-o-backface-visibility: hidden;
@@ -46,10 +41,12 @@
 }
 
 /* front pane, placed above back */
-
+.front {
+	z-index: 2;
+}
 
 /* back, initially hidden pane */
-.back{
+.back {
 	-webkit-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
 	-o-transform: rotateY(180deg);
@@ -59,11 +56,3 @@
 /**
  * 	back extra styling
  */
-.back {
-	background-color: #F4F1EA;
-	
-}
-
-
-
-

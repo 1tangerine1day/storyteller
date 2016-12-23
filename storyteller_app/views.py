@@ -130,7 +130,7 @@ def addpost(request):
             
             Story.objects.create(
                 context =  first_sentence, 
-                auther = "auther",
+                auther = User.objects.get(username=request.user.username),
                 time = strftime("%Y %b %d %X",localtime()),
                 post_id = intopk.created_id,
                 likes = 0,
@@ -186,9 +186,8 @@ def in_post_likes(request, pk):
     post_story = Post.objects.get(created_id=temp_pk)
     
     if request.is_ajax():
-        story_list = Story.objects.filter(post_id=temp_pk).all()
-        post_story = Post.objects.get(created_id=temp_pk)
-        return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story})
+       
+        return render(request, 'storyteller_app/refresh_bottom.html',{'story': story_list, 'post': post_story})
     
     else:
     
