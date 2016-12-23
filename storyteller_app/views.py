@@ -20,14 +20,13 @@ def story(request, pk):
     
     check_pk = pk
     if request.method == 'POST':
-        
         django_form = AddForm(request.POST)
         if django_form.is_valid():
             new_context = django_form.data.get("context")
             
             Story.objects.create(
                 context =  new_context, 
-                auther = "auther",
+                auther = User.objects.get(username=request.user.username),
                 time = strftime("%Y %b %d %X",localtime()),
                 post_id = check_pk,
                 likes = 0,

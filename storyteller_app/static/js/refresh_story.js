@@ -80,7 +80,7 @@ var frm = $('#add_story_form');
                 document.getElementById("context").value = "";
             },
             error: function(data) {
-                $("#refresh_story").html("Something went wrong!");
+                $("#refresh_story").html("<h1>You did not login yet.</h1>");
             }
         });
         return false;
