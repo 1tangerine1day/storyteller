@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from storyteller_app import views
+from django.contrib.auth.views import login
 
 
 urlpatterns = [
@@ -32,10 +33,9 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^editing/', views.collection_e, name='collection_e'),
     url(r'^personal/', views.personal, name='personal'),
-    
-    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^login/$', login),
     url(r'^register/$', views.register),
     url(r'^register/success/$', views.register_success),
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^accounts/login/$', login),
     url(r'^logout/$', views.logout_page),
 ]
