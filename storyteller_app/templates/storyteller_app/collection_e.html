@@ -25,6 +25,7 @@
 	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
 	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
 	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/refresh_post.js' %}"></script>
 </head>
 <body>
 	
@@ -166,7 +167,7 @@
 	      <li><a href="#">&raquo;</a></li>
 	   </ul>
 	</div> -->
-
+<div id ="refresh_post">
 {% for post in contacts %}
     {# Each "contact" is a Contact model object. #}
     <!-- {{ contact.full_name|upper }}<br /> -->
@@ -184,7 +185,7 @@
 			
 			<ul class="list-inline person-details-icons">
 				<li><p>{{ post.post_likes }}</p></li>
-				<li><a href="{% url 'post_likes' post.created_id %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
+				<li><a onclick="likes_post({{ post.created_id }});"><i class="fa-lg fa-thumbs-up"></i></a></li>
 			</ul>
 		</div>
 	
@@ -199,7 +200,7 @@
 			</figure>
 		<ul class="list-inline person-details-icons">
 			<li><p>{{ post.post_likes }}</p></li>
-			<li><a href="{% url 'post_likes' post.created_id %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
+			<li><a onclick="likes_post({{ post.created_id }});"><i class="fa-lg fa-thumbs-up"></i></a></li>
 		</ul>
 	</div>
 	{% endif %}
@@ -240,5 +241,8 @@
 	   </ul>
 	</div> 
 </div>
+
+</div>  <!--refresh-->
+
 </body>
 </html>

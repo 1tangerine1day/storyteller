@@ -39,11 +39,13 @@ def story(request, pk):
                 intopk = Post.objects.get(created_id=check_pk)
             except Story.DoesNotExist:
                 intopk = Post.objects.order_by('-pk')[0]
+
             
             return HttpResponseRedirect("story",intopk.created_id)
             #story_list = Story.objects.filter(post_id=check_pk).all()
             #post_story = Post.objects.get(pk=check_pk)
             #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+
         
         else:
             #return HttpResponseRedirect(request, 'mycontacts/show.html',{'story': story_list})   
@@ -57,7 +59,10 @@ def story(request, pk):
         story_list = Story.objects.filter(post_id=check_pk).all()
         post_story = Post.objects.get(created_id=check_pk)
         
-        return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+        if request.is_ajax():
+            return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story})
+        else:
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
      
 #message like   
 def likes(request, pk):
@@ -67,7 +72,12 @@ def likes(request, pk):
     Story.objects.filter(pk=temp_pk).update(likes = F('likes')+1)
     intopk = Story.objects.get(pk=temp_pk)
     
-    return redirect("story",intopk.post_id)
+    if request.is_ajax():
+        story_list = Story.objects.filter(post_id=intopk.post_id).all()
+        post_story = Post.objects.get(created_id=intopk.post_id)
+        return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story})
+    else:
+        return redirect("story",intopk.post_id)
 
 # collection_ehtml paginator
 def collection_e(request):
@@ -85,8 +95,10 @@ def collection_e(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
-
-    return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
+    if request.is_ajax():
+        return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    else:
+        return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
 # collection_f.html
 def collection_f(request):
@@ -157,8 +169,11 @@ def post_likes(request, pk):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
-
-    return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
+    
+    if request.is_ajax():
+        return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    else:
+        return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
 #story like in chat room
 def in_post_likes(request, pk):
@@ -171,8 +186,14 @@ def in_post_likes(request, pk):
     story_list = Story.objects.filter(post_id=temp_pk).all()
     post_story = Post.objects.get(created_id=temp_pk)
     
-        
-    return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+    if request.is_ajax():
+        story_list = Story.objects.filter(post_id=temp_pk).all()
+        post_story = Post.objects.get(created_id=temp_pk)
+        return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story})
+    
+    else:
+    
+        return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
 
 #hot sort
 def hot_sort(request):

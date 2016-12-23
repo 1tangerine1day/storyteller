@@ -1,0 +1,92 @@
+                <div class="blog-item-header">
+				    <div class="blog-post-date pull-left">
+				        <span class="day">{{ post.created_day }}</span>
+						<span class="month">{{ post.created_mon }}</span>
+				    </div>
+			        <h2><a href="#">{{ post.storyTitle }}</a>
+					<div class="mode-button">
+						<button type="button" class="btn btn-black" id="flipper-edit">edit</button>
+						<button type="button" class="btn btn-black" id="flipper-view">view</button>
+						<button type="button" class="btn btn-black"><a href="{% url 'collection_e' %}">back</a></button>
+						</div>
+					</h2>
+				    </div>           
+				    <div class="blog-item">	        
+                        <div class="blog-item-footer">
+							<!-- Comments -->
+                            <div class="blog-recent-comments panel panel-default margin-bottom-30 margin-top-30">
+	                            <div class="panel-heading">
+                        		    <h3>&nbsp;&nbsp;Story</h3>
+	                            </div>
+								
+
+                                <div class="flip-container">
+                                    <div class="flipper">
+                
+        
+                                        <div class="comments-container front" id="front">
+									
+                                            <ul id="comments-list" class="comments-list">
+                                                {% for story in story %}
+                                                <li>
+                                                    <div class="comment-main-level" >
+                                                    <!-- Avatar -->
+                                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                                                    <!-- Contenedor del Comentario -->
+                                                        <div class="comment-box">
+                                                            <div class="comment-head">
+                                                                <h6 class="comment-name by-author"><a href="#">Jack Jou</a></h6>
+                                                                <span>{{ story.time }}</span>
+                                                                    
+                                                                    <a onclick="likes_story({{story.pk}});">
+                                                                    
+                                                                        <i class="fa fa-heart" >{{ story.likes }}</i>
+                                                    
+                                                                    </a>
+                                                                
+                                                            </div>
+                                                            <div class="comment-content">
+                                                                {{ story.context }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                {%  endfor %}
+              
+                                            </ul>
+										
+		                                </div>
+	                                    <div class="back">
+									
+                                 
+                                            {% for story in story %}
+                                            <div class="row">
+                                                <div class="col-md-12 padding-horiz-40 padding-vert-10">
+	                                                <h4>{{ story.context }}</h4>
+	                                            </div>
+                                            </div>
+                                            {%  endfor %}
+                                 
+                                  
+		                                    <div class="row">
+				                                </br></br>
+                                                <div class="col-md-12 padding-horiz-40 padding-vert-10">
+                                                    <h3 class="date"><i class="fa fa-clock-o"></i> 10 May 2013</h3>
+                                                </div>
+                                            </div>
+                                  
+                                  
+			                            </div>
+                                     </div>
+        	                    </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                
+                
+                <a onclick="likes_in_post({{post.created_id}});"><i class="fa fa-thumbs-up fa-2x"></i>&nbsp;<b>{{post.post_likes}}&nbsp;Likes</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#"><i class="fa fa-file fa-2x"></i>&nbsp;<b>Follow</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#"><i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b></a>
+                <hr class="end-line"><br/><br/>
+                

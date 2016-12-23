@@ -30,6 +30,7 @@
 	<script type="text/javascript" src="{% static 'js/editing.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/flips.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
+
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -110,7 +111,10 @@
 	<div id="content" class="container">
     <div class="row margin-vert-30">
         <div class="col-md-12">
-			<div class="blog-post"> 
+        	
+        	
+        	<div id="refresh_story">
+			<div class="blog-post" > 
                 <div class="blog-item-header">
 				    <div class="blog-post-date pull-left">
 				        <span class="day">{{ post.created_day }}</span>
@@ -151,7 +155,7 @@
                                                                 <h6 class="comment-name by-author"><a href="#">Jack Jou</a></h6>
                                                                 <span>{{ story.time }}</span>
                                                                     
-                                                                    <a class = "likes" href="{% url 'likes' story.pk %}">
+                                                                    <a onclick="likes_story({{story.pk}});">
                                                                     
                                                                         <i class="fa fa-heart" >{{ story.likes }}</i>
                                                     
@@ -198,20 +202,22 @@
                  </div>
                 
                 
-                <a href="{% url 'in_post_likes' post.created_id %}"><i class="fa fa-thumbs-up fa-2x"></i>&nbsp;<b>{{post.post_likes}}&nbsp;Likes</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a onclick="likes_in_post({{post.created_id}});"><i class="fa fa-thumbs-up fa-2x"></i>&nbsp;<b>{{post.post_likes}}&nbsp;Likes</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="#"><i class="fa fa-file fa-2x"></i>&nbsp;<b>Follow</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="#"><i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b></a>
                 <hr class="end-line"><br/><br/>
-                            
+                
+                </div> <!--refresh-->
+                
+                          
                 <div class="blog-author panel panel-default margin-bottom-30 acomment" id="comment">
 					<div class="panel-heading">
 						<h3>&nbsp;&nbsp;What's next ? </h3>
 					</div>
 					<div class="panel-body">
-						
 	                    <div class="row">
 		                    <div class="col-md-12">
-			                    <form id="add-contact-form" class="form" action="{% url 'story' post.created_id %}" method="POST" role="form">
+			                    <form id="add_story_form" class="form" action="{% url 'story' post.created_id %}" method="POST" role="form">
 			                        {% csrf_token %}
                                     {{ form.as_p }}
 				                    <div class="row margin-bottom-20">
@@ -230,14 +236,17 @@
 	                   </div>
                     </div>
 				</div>
+				
+				
+				
+				
 			</div>	
 		</div>
 	</div>
-	</div>
               
-                                   
                               
     <!-- /editting -->
+    <script type="text/javascript" src="{% static 'js/refresh_story.js' %}"></script>
 
 </body>
 </html>
