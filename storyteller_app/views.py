@@ -189,7 +189,7 @@ def in_post_likes(request, pk):
     if request.is_ajax():
         story_list = Story.objects.filter(post_id=temp_pk).all()
         post_story = Post.objects.get(created_id=temp_pk)
-        return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story})
+        return render(request, 'storyteller_app/refresh_bottom.html',{'story': story_list, 'post': post_story})
     
     else:
     
