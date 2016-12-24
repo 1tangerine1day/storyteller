@@ -113,6 +113,7 @@ def addpost(request):
         
         django_form = AddForm2(request.POST)
         if django_form.is_valid():
+            
             new_title = django_form.data.get("new-title")
             first_sentence = django_form.data.get("first-sentence")
             
@@ -186,8 +187,9 @@ def in_post_likes(request, pk):
     post_story = Post.objects.get(created_id=temp_pk)
     
     if request.is_ajax():
-       
-        return render(request, 'storyteller_app/refresh_bottom.html',{'story': story_list, 'post': post_story})
+        story_list = Story.objects.filter(post_id=temp_pk).all()
+        post_story = Post.objects.get(created_id=temp_pk)
+        return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story})
     
     else:
     

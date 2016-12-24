@@ -34,7 +34,6 @@ function likes_story(id) {
 
         // handle a successful response
         success : function(data) {
-            alert ("not work"  + data);
             $('#card').html(data);
 
         },
