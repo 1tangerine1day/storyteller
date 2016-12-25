@@ -8,6 +8,7 @@ from .models import Story, Post
 from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
+from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
@@ -123,6 +124,7 @@ def addpost(request):
                 created_at = strftime("%Y %b %d",localtime()),
                 created_day = strftime("%d",localtime()),
                 created_mon = strftime("%b",localtime()),
+                created_auther = User.objects.get(username=request.user.username),
                 post_likes = 0,
                 firstSentence = first_sentence,
             )
@@ -232,14 +234,43 @@ def new_sort(request):
         contacts = paginator.page(paginator.num_pages)
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
-    
+
+
+
 @login_required
 def personal(request):
-    return render(request,'storyteller_app/personal.html')
+    
+    likelist = Story.objects.filter(auther=request.user.username).values('likes')
+    all_likelist = Story.objects.values('likes')
+    person_likes = 0
+    all_likes = 0
+    
+
+    
+    #for val in likelist:
+        #person_like += val
+        
+    for likes in likelist:
+        for key in likes:
+            likes[key] = int(likes[key])
+            person_likes += likes[key]
+            
+    for likes in all_likelist:
+        for key in likes:
+            likes[key] = int(likes[key])
+            all_likes += likes[key]
     
     
+    rate = (person_likes/all_likes)*100
+    
+    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes , 'rate':rate})
+    
+
+
+   
 def login(request):
     return render_to_response('registration/login.html',)      
+
 
 
 @csrf_protect
