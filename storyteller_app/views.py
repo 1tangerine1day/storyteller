@@ -265,9 +265,8 @@ def follow(request,pk):
 def personal(request):
     
     likelist = Story.objects.filter(auther=request.user.username).values('likes')
-    all_likelist = Story.objects.values('likes')
     person_likes = 0
-    all_likes = 0
+
      
     #add all like  
     for likes in likelist:
@@ -275,11 +274,25 @@ def personal(request):
             likes[key] = int(likes[key])
             person_likes += likes[key]
             
+    
     my_followlist = Follow.objects.filter(follow_who=request.user.username).all()
-   
+    
+    #cal exp
+    person_exp = person_likes
+    person_level = 1
+    exp_max = 10.0
+    cal_exp = person_exp
+    
+    while cal_exp > exp_max:
+        person_level+=1
+        cal_exp = cal_exp-exp_max
     
     
-    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist})
+    show_exp = (cal_exp/exp_max)*100.0
+    show_expInt = int(show_exp)
+    
+    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist,
+                    'show_exp':show_exp,'person_level':person_level,'show_expInt':show_expInt})
     
 
 
