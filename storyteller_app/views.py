@@ -285,10 +285,24 @@ def personal(request, pk):
             
     my_followlist = Follow.objects.filter(follow_who=temp_pk).all()
     user = User.objects.get(username = temp_pk)
-   
     
+    my_followlist = Follow.objects.filter(follow_who=request.user.username).all()
     
-    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist, 'other_user':user,})
+    #cal exp
+    person_exp = person_likes
+    person_level = 1
+    exp_max = 10.0
+    cal_exp = person_exp
+    
+    while cal_exp > exp_max:
+        person_level+=1
+        cal_exp = cal_exp-exp_max
+    
+    show_exp = (cal_exp/exp_max)*100.0
+    show_expInt = int(show_exp)
+
+
+    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist, 'other_user':user,'show_exp':show_exp,'person_level':person_level,'show_expInt':show_expInt})
     
 
 

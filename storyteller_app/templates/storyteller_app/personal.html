@@ -148,13 +148,13 @@
 							<img src="{% static 'img/ana.png' %}"  width="30" class="margin-top-20">
 							<div>
 								<h3 class="progress-label">
-  									Level 6
-  									<span class="pull-right">38%------{{person_likes}} likes</span>
+  									Level {{person_level}} ({{person_likes}} likes)
+  									<span class="pull-right">{{show_expInt}}%</span>
 								</h3>
 									<div class="progress progress-m">
   										<div class="progress-bar progress-bar-primary
   											 progress-bar-Dan-blue"
-  											style="width: 38%">
+  											style="width: {{show_exp}}%">
   										</div>
 									</div>
 							</div>
@@ -171,29 +171,25 @@
 
 		<!-- collect -->
 	
-	<div class="row ">
-		<div class="col-md-offset-2  col-xs-offset-2 col-md-7 col-xs-7 margin-top-20">
-			<h2>Followed Story</h2>
+	<div class=" col-md-12">
+		<div class="col-md-offset-2 col-xs-offset-2 col-md-7 col-xs-7 margin-top-40">
+			<h3>Followed Story</h3>
 		</div>
-		<!-- <div class="col-md-2 col-xs-2 margin-top-20">
-			<button type="button" class="btn btn-black">new</button>
-			<button type="button" class="btn btn-black">hot</button>
-		</div> -->
 	</div>
 
 	<!-- line -->
-	<div class="row margin-top-10">
-		<div class="col-md-offset-2  col-xs-offset-2 col-md-12 col-xs-6" id="line1"></div>
+	<div class="col-md-12 margin-top-10">
+		<div class="col-md-offset-2 col-xs-offset-2 col-md-10 col-xs-6" id="line"></div>
 	</div>
 	<!-- finished story -->
-	<div class="row col-md-12">
+	<div class=" col-md-12">
 		
 		
 		{% for follow in followlist %} 
 
 		 {% if forloop.counter0|divisibleby:2 %}
 	
-		<div class="col-md-offset-2 col-md-4 person-details">
+		<div class="col-md-offset-3 col-md-3 person-details">
 		
 			<figure class="editing">
 				<figcaption>
@@ -210,7 +206,7 @@
 		</div>
 	
 	{% else %}
-	<div class="col-md-4 person-details">
+	<div class="col-md-3 person-details">
 			<figure class="editing">
 				<figcaption>
 				<h3 class="margin-bottom-10">{{  follow.follow_storyTitle }}<br/><small>  {{  follow.follow_created_at }}</small></h3>
@@ -228,6 +224,7 @@
 		
 		
 	</div><!-- /.row -->
+
 
 </body>
 </html>

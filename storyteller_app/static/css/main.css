@@ -118,7 +118,7 @@ figure > figcaption > h3 > small {
 }
 
 #line {
-	width: 50%;
+	width: 100%;
 	height: 1px;
 	background-color: gray;
 }
@@ -185,18 +185,6 @@ figure .btn-primary a {
 	color: black;
 }
 
-.finish:hover .btn-primary {
-	display: inline-block;
-	border-width: 2px;
-	background-color: #363539;
-	border-color: white;
-	animation: mymove 0.5s ;
-	animation-fill-mode: forwards;
-} 
-
-.finish:hover {
-	background-color: #DCDCDC;
-}
 
 .editing:hover .btn-primary {
 	display: inline-block;
@@ -205,10 +193,15 @@ figure .btn-primary a {
 	border-color: white;
 	animation: mymove 0.5s ;
 	animation-fill-mode: forwards;
+	text-align: center;
 } 
 
 .editing:hover {
 	background-color: #DCDCDC;
+	text-align: center;
+	align-items: center;
 
 } 
+
+
 
