@@ -13,6 +13,9 @@ class Story(models.Model):
     story_id = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     
+    def __str__(self):
+		return self.context
+    
 class Post(models.Model):
 	storyTitle = models.CharField(max_length=25)
 	created_id = models.CharField(max_length=25)
@@ -22,6 +25,10 @@ class Post(models.Model):
 	post_likes = models.IntegerField(default=0)
 	firstSentence = models.CharField(max_length=25)
 	created_auther = models.CharField(max_length=25)
+	
+	def __str__(self):
+		return self.storyTitle
+	
 	
 class Follow(models.Model):
 	follow_post = models.CharField(max_length=25)

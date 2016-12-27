@@ -8,7 +8,7 @@
     {% endif %}
     
     <form class="form" method="post" action="." >{% csrf_token %}
-        <input type="text" placeholder="Username" name="username">
+        <input type="text" placeholder="Account" name="username">
         <input type="password" placeholder="Password" name="password">
         <button type="submit"  value="Login" id="login-button">Login</button>
         <button type="button" onclick="window.location.href='/register/'">Register</button>

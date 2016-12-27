@@ -151,7 +151,7 @@
                                                     <!-- Contenedor del Comentario -->
                                                         <div class="comment-box">
                                                             <div class="comment-head">
-                                                                <h6 class="comment-name by-author"><a href="#">{{story.auther}}</a></h6>
+                                                                <h6 class="comment-name by-author"><a href="{% url 'personal' story.auther %}">{{story.auther}}</a></h6>
                                                                 <span>{{ story.time }}</span>
                                                                     
                                                                     <a onclick="likes_story({{story.pk}});">

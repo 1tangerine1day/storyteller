@@ -246,7 +246,7 @@ def follow(request,pk):
                 follow_created_at = post.created_at,
                 follow_firstSentence = post.firstSentence,
                 follow_storyTitle = post.storyTitle,
-                )
+    )
     
     
     story_list = Story.objects.filter(post_id=temp_pk).all()

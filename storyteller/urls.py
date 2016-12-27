@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^new/', views.new_sort, name = 'new_sort'),
     url(r'^$', views.index, name='index'),
     url(r'^editing/', views.collection_e, name='collection_e'),
-    url(r'^personal/(?P<pk>\d+)', views.personal, name='personal'),
+    url(r'^personal/(?P<pk>\w+)', views.personal, name='personal'),
     url(r'^login/$', login),
     url(r'^register/$', views.register),
     url(r'^register/success/$', views.register_success),
