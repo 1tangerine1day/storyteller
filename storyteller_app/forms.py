@@ -24,7 +24,7 @@ class FollowForm(forms.Form):
     
     class Meta:
     	model = Follow
-    	fields = ('follow_post', 'follow_who','follow_created_at','follow_firstSentence','follow_storyTitle',)
+    	fields = ('follow_post', 'follow_who', 'follow_created_id', 'follow_created_at', 'follow_likes', 'follow_firstSentence','follow_storyTitle',)
     	
     	
 

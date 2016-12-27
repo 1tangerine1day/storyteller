@@ -43,6 +43,7 @@
 	font-size:16px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
+	color: black
 }
 
 .text-area{
@@ -50,13 +51,15 @@
 	resize: none;
 	display: block;
 	border: 1px solid #cccccc;
-    border-radius: 5px;
+  border-radius: 5px;
+  color: black;
 
 }
 
 .btn-area{
 	border: 1px solid #cccccc;
-    border-radius: 5px;
+  border-radius: 5px;
+  color: black;
 
 }
 

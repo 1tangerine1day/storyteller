@@ -33,7 +33,9 @@ class Post(models.Model):
 class Follow(models.Model):
 	follow_post = models.CharField(max_length=25)
 	follow_who = models.CharField(max_length=25)
+	follow_created_id = models.CharField(max_length=25)
 	follow_created_at = models.CharField(max_length=25)
+	follow_likes = models.IntegerField(default=0)
 	follow_firstSentence = models.CharField(max_length=25)
 	follow_storyTitle = models.CharField(max_length=25)
 

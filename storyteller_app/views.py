@@ -241,11 +241,13 @@ def follow(request,pk):
     temp_pk = pk
     post = Post.objects.get(created_id=temp_pk)
     Follow.objects.update_or_create(
-                follow_post = temp_pk,
-                follow_who = User.objects.get(username=request.user.username),
-                follow_created_at = post.created_at,
-                follow_firstSentence = post.firstSentence,
-                follow_storyTitle = post.storyTitle,
+        follow_post = temp_pk,
+        follow_who = User.objects.get(username=request.user.username),
+        follow_created_id = post.created_id,
+        follow_created_at = post.created_at,
+        follow_firstSentence = post.firstSentence,
+        follow_likes = post.post_likes,
+        follow_storyTitle = post.storyTitle,
     )
     
     

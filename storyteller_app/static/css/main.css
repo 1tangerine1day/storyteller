@@ -1,12 +1,12 @@
 /* keyframe */
 @-webkit-keyframes mymove {
-	0% {width: 20px;}
-	100% {width: 500px;}
+	0% {margin-top: 50px;}
+	100% {margin-top: -10px;}
 }
 
 @keyframes mymove {
-	0% {height: 20px;}
-	100% {height: 500px;}
+	0% {margin-top: 50px;}
+	100% {margin-top: -10px;}
 }
 
 /* Bootstrap Modifications */
@@ -101,15 +101,30 @@ body{
 
 /* collect */
 
+figure > figcaption > span {
+	color: #363539;
+}
+
+figure > figcaption > span:hover {
+	color: #363539;
+}
+
+figure > figcaption > h3 > small {
+	color: #363539;
+}
+
+.selection {
+	margin-top: 70px;
+}
+
 #line {
 	width: 50%;
 	height: 1px;
 	background-color: gray;
 }
-#line1 {
-	width: 70%;
-	height: 1px;
-	background-color: gray;
+
+a .btn-black {
+	color: black;
 }
 
 .person-details {
@@ -117,24 +132,83 @@ body{
 }
 
 .finish {
-	height: 250px;
+	height: 200px;
+	text-align: center;
 }
 
-.finish p {
-	color: gray;
+.editing {
+	height: 200px;
+	text-align: center;
+}
+
+figure .btn-primary {
+	display: none;
+	margin-top: 50px;
+	background-color: blue;
+}
+
+figure .btn-primary a {
+	color: white;
 }
 
 .list-inline {
-	margin-top: 110px;
+	height: 40px;
+	color: gray;
+	margin-top: -5px;
+	border-radius: 2px 2px 5px 5px;
 }
 
 .fa-thumbs-up {
 	color: white;
 }
 
-.follow {
-	text-align: center;	
+.pagination {
+	margin-top: 70px;
 }
 
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+	 z-index: 3;
+	 color: #fff;
+	 cursor: default;
+	 background-color: gray;
+	 border-color: gray;
+}
 
+.pagination > li > a {
+	color: gray;
+}
+
+.pagination > li > a:hover {
+	color: black;
+}
+
+.finish:hover .btn-primary {
+	display: inline-block;
+	border-width: 2px;
+	background-color: #363539;
+	border-color: white;
+	animation: mymove 0.5s ;
+	animation-fill-mode: forwards;
+} 
+
+.finish:hover {
+	background-color: #DCDCDC;
+}
+
+.editing:hover .btn-primary {
+	display: inline-block;
+	border-width: 2px;
+	background-color: #363539;
+	border-color: white;
+	animation: mymove 0.5s ;
+	animation-fill-mode: forwards;
+} 
+
+.editing:hover {
+	background-color: #DCDCDC;
+
+} 
 
