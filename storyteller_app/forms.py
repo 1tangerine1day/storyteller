@@ -1,5 +1,5 @@
 from django import forms
-from .models import Story,Post
+from .models import Story,Post,Follow
 
 import re
 from django.contrib.auth.models import User
@@ -17,7 +17,16 @@ class AddForm2(forms.Form):
     
     class Meta:
     	model = Post
-    	fields = ('storyTitle', 'create_id', 'created_at', 'created_day', 'created_mon','post_likes', 'firstSentence',)
+    	fields = ('storyTitle', 'created_id', 'created_at', 'created_day', 'created_mon','post_likes', 'firstSentence',)
+    	
+    	
+class FollowForm(forms.Form):
+    
+    class Meta:
+    	model = Follow
+    	fields = ('follow_post', 'follow_who','follow_created_at','follow_firstSentence','follow_storyTitle',)
+    	
+    	
 
 class RegistrationForm(forms.Form):
  

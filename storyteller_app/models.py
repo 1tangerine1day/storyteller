@@ -23,6 +23,14 @@ class Post(models.Model):
 	firstSentence = models.CharField(max_length=25)
 	created_auther = models.CharField(max_length=25)
 	
+class Follow(models.Model):
+	follow_post = models.CharField(max_length=25)
+	follow_who = models.CharField(max_length=25)
+	follow_created_at = models.CharField(max_length=25)
+	follow_firstSentence = models.CharField(max_length=25)
+	follow_storyTitle = models.CharField(max_length=25)
+
+	
 
 
     

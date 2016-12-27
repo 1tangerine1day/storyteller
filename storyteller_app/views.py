@@ -3,8 +3,8 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 # Create your views here.
-from .forms import AddForm, AddForm2, RegistrationForm, User
-from .models import Story, Post
+from .forms import AddForm, AddForm2, RegistrationForm, User, FollowForm
+from .models import Story, Post, Follow
 from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
@@ -234,6 +234,30 @@ def new_sort(request):
         contacts = paginator.page(paginator.num_pages)
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
+    
+    
+#follow
+def follow(request,pk):
+    temp_pk = pk
+    post = Post.objects.get(created_id=temp_pk)
+    Follow.objects.update_or_create(
+                follow_post = temp_pk,
+                follow_who = User.objects.get(username=request.user.username),
+                follow_created_at = post.created_at,
+                follow_firstSentence = post.firstSentence,
+                follow_storyTitle = post.storyTitle,
+                )
+    
+    
+    story_list = Story.objects.filter(post_id=temp_pk).all()
+    post_story = post
+    
+    if request.is_ajax():
+        return render(request, 'storyteller_app/refresh_bottom.html',{'story': story_list, 'post': post_story})
+    
+    else:
+        return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+        
 
 
 
@@ -244,26 +268,18 @@ def personal(request):
     all_likelist = Story.objects.values('likes')
     person_likes = 0
     all_likes = 0
-    
-
-    
-    #for val in likelist:
-        #person_like += val
-        
+     
+    #add all like  
     for likes in likelist:
         for key in likes:
             likes[key] = int(likes[key])
             person_likes += likes[key]
             
-    for likes in all_likelist:
-        for key in likes:
-            likes[key] = int(likes[key])
-            all_likes += likes[key]
+    my_followlist = Follow.objects.filter(follow_who=request.user.username).all()
+   
     
     
-    rate = (person_likes/all_likes)*100
-    
-    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes , 'rate':rate})
+    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist})
     
 
 

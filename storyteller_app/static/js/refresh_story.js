@@ -72,6 +72,32 @@ function likes_in_post(id) {
     
 }
 
+function follow(id){
+    var iurl = "/follow/123/";
+    iurl = iurl.replace('123', id);
+    
+    $.ajax({
+        url : iurl, 
+        
+        datatype:"html",
+
+        // handle a successful response
+        success : function(data) {
+            alert ("follow");
+            $('#refresh_bottom').html(data);
+
+        },
+
+        // handle a non-successful response
+        error : function(data,xhr,errmsg,err) {
+            alert ("not work"  + data);
+        }
+    
+    });
+}
+
+
+
 var frm = $('#add_story_form');
     frm.submit(function () {
         $.ajax({
