@@ -42,7 +42,7 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav navbar-right">
 	      	{% if user.is_authenticated %}
-	      	<li><a href="{% url 'personal' %}">{{ user.username }}</a></li>
+	      	<li><a href="{% url 'personal' user.username %}">{{ user.username }}</a></li>
 	      	{% else %}
 	        <li><a href="javascript: return false;" onclick="window.location.href='/login/' ">Log in</a></li>
 	        {% endif %}
@@ -137,7 +137,7 @@
 							</ul> -->
 						</div>
 						<div class="col-md-6 ">
-							<h3 class="padding-top-20 pull-left">{{ user.username }} <small>- Software Developer</small></h3>
+							<h3 class="padding-top-20 pull-left">{{ other_user.username }} <small>- Software Developer</small></h3>
 							<div class="clearfix"></div>
 							<p></p>
 							<img src="{% static 'img/pen.png' %}"  width="30" class="margin-top-20">

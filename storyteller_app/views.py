@@ -262,24 +262,26 @@ def follow(request,pk):
 
 
 @login_required
-def personal(request):
+def personal(request, pk):
     
-    likelist = Story.objects.filter(auther=request.user.username).values('likes')
+    temp_pk = pk
+    likelist = Story.objects.filter(auther=temp_pk).values('likes')
     all_likelist = Story.objects.values('likes')
     person_likes = 0
     all_likes = 0
-     
+    
     #add all like  
     for likes in likelist:
         for key in likes:
             likes[key] = int(likes[key])
             person_likes += likes[key]
             
-    my_followlist = Follow.objects.filter(follow_who=request.user.username).all()
+    my_followlist = Follow.objects.filter(follow_who=temp_pk).all()
+    user = User.objects.get(username = temp_pk)
    
     
     
-    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist})
+    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist, 'other_user':user,})
     
 
 
