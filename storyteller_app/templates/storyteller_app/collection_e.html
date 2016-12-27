@@ -171,8 +171,9 @@
 {% for post in contacts %}
     {# Each "contact" is a Contact model object. #}
     <!-- {{ contact.full_name|upper }}<br /> -->
+
     {% if forloop.counter0|divisibleby:3 %}
-	
+		
 		<div class="col-md-offset-3 col-md-2 person-details">
 		
 			<figure class="editing" id="story1">
@@ -203,46 +204,37 @@
 			<li><a onclick="likes_post({{ post.created_id }});"><i class="fa-lg fa-thumbs-up"></i></a></li>
 		</ul>
 	</div>
+	
+	
 	{% endif %}
-	{% endfor %}
 
-<!-- <div class="pagination">
-    <span class="step-links">
-        {% if contacts.has_previous %}
-            <a href="?page={{ contacts.previous_page_number }}">previous</a>
-        {% endif %}
+{% endfor %}
+	
+</div>  <!--refresh-->
 
-        <span class="current">
-            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
-        </span>
 
-        {% if contacts.has_next %}
-            <a href="?page={{ contacts.next_page_number }}">next</a>
-        {% endif %}
-    </span>
-</div> -->
 
 <div class="text-center row">
 	<div class="col-md-12">
 	   <ul class="pagination">
 	    {% if contacts.has_previous %}
-	    <li><a href="?page={{ contacts.previous_page_number }}">&laquo;</a></li>
+	    <li><a href="?page={{ contacts.previous_page_number }}" id="page_{{contacts.previous_page_number}}">&laquo;</a></li>
 	    {% endif %}
 	    {% for page in contacts.paginator.page_range %}
 		    {% ifequal page  contacts.number %}
-	      		<li class="active"><a>{{ page }}</a></li>
+	      		<li class="active"><a id="page_{{page}}">{{ page }}</a></li>
 	    	{% else %}
-	      		<li><a href="?page={{ page }}">{{ page }}</a></li>
+	      		<li><a href="?page={{ page }}" id="page_{{page}}" >{{ page }}</a></li>
 	    	{% endifequal %}
 	    {% endfor %}
 	       {% if contacts.has_next %}
-	      <li><a href="?page={{ contacts.next_page_number }}">&raquo;</a></li>
+	      <li><a href="?page={{ contacts.next_page_number }}" id="page_{{contacts.next_page_number}}">&raquo;</a></li>
 	       {% endif %}
 	   </ul>
 	</div> 
 </div>
 
-</div>  <!--refresh-->
+
 
 </body>
 </html>

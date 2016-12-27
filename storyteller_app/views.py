@@ -159,22 +159,27 @@ def post_likes(request, pk):
     
     temp_pk = pk
     Post.objects.filter(created_id=temp_pk).update(post_likes = F('post_likes')+1)
-    contact_list = Post.objects.all().order_by('-pk')
-    paginator = Paginator(contact_list, 9) # Show 25 contacts per page
-    page = request.GET.get('page')
-
-    try:
-        contacts = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first pag.
-        contacts = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        contacts = paginator.page(paginator.num_pages)
+    
     
     if request.is_ajax():
-        return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+        post = Post.objects.get(created_id=temp_pk)
+        return render(request, 'storyteller_app/refresh_likes.html',{'post': post})
+    
     else:
+        
+        contact_list = Post.objects.all().order_by('-pk')
+        paginator = Paginator(contact_list, 9) # Show 25 contacts per page
+        page = request.GET.get('page')
+        
+        try:
+            contacts = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first pag.
+            contacts = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            contacts = paginator.page(paginator.num_pages)
+        
         return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
 #story like in chat room

@@ -1,3 +1,5 @@
+var what_page = 2;
+
 function likes_post(id) {
     
     var iurl = "/post_likes/123/";
@@ -10,7 +12,7 @@ function likes_post(id) {
 
         // handle a successful response
         success : function(data) {
-            $('#refresh_post').html(data);
+            $('#refresh_post'+id).html(data);
 
         },
 
@@ -23,7 +25,9 @@ function likes_post(id) {
     
 }
 
-
+function page(tem){
+    what_page = tem;
+}
 
 
 
@@ -32,7 +36,7 @@ function likes_post(id) {
 var timerRef;
 
 function doSomething() {
-    $.ajax("/editing/", {
+    $.ajax(window.location.href, {
         success: function(data) {
             $("#refresh_post").html(data);
         },
