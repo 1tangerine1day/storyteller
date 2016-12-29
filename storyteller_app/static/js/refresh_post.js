@@ -5,6 +5,10 @@ function likes_post(id) {
     var iurl = "/post_likes/123/";
     iurl = iurl.replace('123', id);
     
+    var idiv = "#refresh_like_123";
+    idiv = idiv.replace('123', id);
+    
+    
     $.ajax({
         url : iurl, 
         
@@ -12,7 +16,8 @@ function likes_post(id) {
 
         // handle a successful response
         success : function(data) {
-            $('#refresh_post'+id).html(data);
+            alert ("work"  + data);
+            $(idiv).html(data);
 
         },
 

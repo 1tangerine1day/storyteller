@@ -118,9 +118,11 @@ def addpost(request):
             new_title = django_form.data.get("new-title")
             first_sentence = django_form.data.get("first-sentence")
             
+            new_id = int(round(time.time() * 1000))
+            
             Post.objects.create(
                 storyTitle = new_title,
-                created_id = int(round(time.time() * 1000)),
+                created_id = new_id,
                 created_at = strftime("%Y %b %d",localtime()),
                 created_day = strftime("%d",localtime()),
                 created_mon = strftime("%b",localtime()),
@@ -129,7 +131,8 @@ def addpost(request):
                 firstSentence = first_sentence,
             )
             
-            intopk = Post.objects.get(storyTitle=new_title)
+            
+            intopk = Post.objects.get(created_id=new_id)
             
             Story.objects.create(
                 context =  first_sentence, 
