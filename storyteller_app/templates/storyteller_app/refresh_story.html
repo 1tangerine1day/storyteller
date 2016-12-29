@@ -8,11 +8,15 @@
                                                 <li>
                                                     <div class="comment-main-level" >
                                                     <!-- Avatar -->
-                                                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                                                    <div class="comment-avatar"><img src="{{story.auther_img.url}}" alt=""></div>
                                                     <!-- Contenedor del Comentario -->
                                                         <div class="comment-box">
                                                             <div class="comment-head">
+                                                                {%if post.created_auther = story.auther%}
                                                                 <h6 class="comment-name by-author"><a href="{% url 'personal' story.auther %}">{{story.auther}}</a></h6>
+                                                                {% else %}
+                                                                <h6 class="comment-name"><a href="{% url 'personal' story.auther %}">{{story.auther}}</a></h6>
+                                                                {% endif %}
                                                                 <span>{{ story.time }}</span>
                                                                     
                                                                     <a onclick="likes_story({{story.pk}});">

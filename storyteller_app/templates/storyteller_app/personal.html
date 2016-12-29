@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
 	<link rel="stylesheet" href="{% static 'css/nexus.css' %}">
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 	<link rel="stylesheet" href="{% static 'css/progressbar.css' %}">
 	<link rel="stylesheet" href="{% static 'css/create.css' %}">
 	<link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -25,7 +24,6 @@
 	<!-- JS -->
 	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
 </head>
 <body>
@@ -66,57 +64,6 @@
 	  </div><!-- /.container-fluid -->
 	</nav><!-- /navbar -->
 
-		<!-- login -->
-	<div class="cotn_principal" id="log_in_page" style="display:none;">
-		<a id="close_log" href="#"><img src="{% static 'img/ic_clear.png' %}"></a>
-		<div class="cont_centrar">
-  			<div class="cont_login">
-				<div class="cont_info_log_sign_up">
-      				<div class="col_md_login">
-						<div class="cont_ba_opcitiy">
-	        				<h2>LOGIN</h2>  
-	  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
-	  						<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-  						</div>
-  					</div>
-					<div class="col_md_sign_up">
-						<div class="cont_ba_opcitiy">
-  							<h2>SIGN UP</h2>
-  							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  							<button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-						</div>
-  					</div>
-       			</div>
-    			<div class="cont_back_info">
-       				<div class="cont_img_back_grey">
-       					<img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
-       				</div>
-    			</div>
-				<div class="cont_forms" >
-    				<div class="cont_img_back_">
-       					<img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
-       				</div>
- 					<div class="cont_form_login">
-						<a href="#" onclick="ocultar_login_sign_up()" ><img src="{% static 'img/ic_keyboard.png' %}"></a>
-						  <h2>LOGIN</h2>
-						 <input type="text" placeholder="Email" />
-						<input type="password" placeholder="Password" />
-						<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-						<button class="btn_login_f" onclick="cambiar_login()">FACEBOOK</button>
-  					</div>
-   					<div class="cont_form_sign_up">
-						<a href="#" onclick="ocultar_login_sign_up()"><img src="{% static 'img/ic_keyboard.png' %}"></a>
-						   <h2>SIGN UP</h2>
-						<input type="text" placeholder="Email" />
-						<input type="text" placeholder="User" />
-						<input type="password" placeholder="Password" />
-						<input type="password" placeholder="Confirm Password" />
-						<button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-  					</div>
-    			</div>
-  			</div>
- 		</div>
-	</div>
 
 	<!--personal info-->
 
@@ -130,13 +77,15 @@
 						
 					<div class="row ">
 						<div class="col-md-2 col-md-offset-2 col-xs-offset-3">
-							<img src="{% static 'img/blackguy.jpeg' %}" width="200" height="200" class="margin-top-20">
-							<!-- <ul class="list-inline about-me-icons">
-								<li><a href="#"><i class="fa-sm fa-border fa-linkedin"></i></a></li>
-								<li><a href="#"><i class="fa-sm fa-border fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa-sm fa-border fa-dribbble"></i></a></li>
-								<li><a href="#"><i class="fa-sm fa-border fa-google-plus"></i></a></li>
-							</ul> -->
+							<img src="{{my_img.img.url}}" width="200" height="200" class="margin-top-20">
+							{% if user.username = other_user.username%}
+							<form method="POST" action="{%url 'upload_img'%}" enctype="multipart/form-data">
+								{% csrf_token %}
+								<input type="file" name="img" id="img">
+								<button type="submit">上傳</button>
+							</form>
+							{% endif %}
+							
 						</div>
 						<div class="col-md-6 ">
 							<h3 class="padding-top-20 pull-left">{{ other_user.username }} <small>- Software Developer</small></h3>
@@ -159,8 +108,13 @@
 									</div>
 							</div>
 						</div>
+						
+						
 					</div>
 					</div>
+					
+					
+					
 					
 
 				<!-- </div> -->

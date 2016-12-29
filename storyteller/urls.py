@@ -18,6 +18,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from storyteller_app import views
 from django.contrib.auth.views import login
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 
 urlpatterns = [
@@ -39,4 +42,7 @@ urlpatterns = [
     url(r'^register/success/$', views.register_success),
     url(r'^accounts/login/$', login),
     url(r'^logout/$', views.logout_page),
-]
+    url(r'^upload_img/$', views.upload_img, name="upload_img"),
+    
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

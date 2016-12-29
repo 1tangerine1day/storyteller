@@ -3,12 +3,11 @@ from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 # Create your views here.
-from .forms import AddForm, AddForm2, RegistrationForm, User, FollowForm
-from .models import Story, Post, Follow
+from .forms import AddForm, AddForm2, RegistrationForm, User, FollowForm, imgForm
+from .models import Story, Post, Follow, Img
 from django.http import HttpResponseRedirect
 from time import localtime,strftime
 from django.db.models import F
-from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
@@ -31,6 +30,7 @@ def story(request, pk):
                 time = strftime("%Y %b %d %X",localtime()),
                 post_id = check_pk,
                 likes = 0,
+                auther_img = Img.objects.filter(username = request.user.username).order_by('-pk')[0].img
              )   
             #url = reverse('story', kwargs={'story': check_pk})
             #return HttpResponseRedirect(url)
@@ -53,16 +53,19 @@ def story(request, pk):
             #return HttpResponseRedirect(url)
             story_list = Story.objects.filter(post_id=check_pk).all()
             post_story = Post.objects.get(created_id=check_pk)
-            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+            
+            
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story,})
     
     else:
         story_list = Story.objects.filter(post_id=check_pk).all()
         post_story = Post.objects.get(created_id=check_pk)
         
+        
         if request.is_ajax():
-            return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story})
+            return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story,})
         else:
-            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story,})
      
 #message like   
 def likes(request, pk):
@@ -133,6 +136,7 @@ def addpost(request):
             
             
             intopk = Post.objects.get(created_id=new_id)
+
             
             Story.objects.create(
                 context =  first_sentence, 
@@ -140,10 +144,12 @@ def addpost(request):
                 time = strftime("%Y %b %d %X",localtime()),
                 post_id = intopk.created_id,
                 likes = 0,
+                auther_img = Img.objects.filter(username = request.user.username).order_by('-pk')[0].img
             )
             
 
-            return redirect("story",intopk.created_id)
+            post_list  = Post.objects.all()
+            return render(request,'storyteller_app/collection_e.html',{'post': post_list})
         
         else:
             post_list  = Post.objects.all()
@@ -153,10 +159,14 @@ def addpost(request):
         post_list  = Post.objects.all()
         return render(request,'storyteller_app/collection_e.html',{'post': post_list})
 
+
+
 #index.html
 def index(request):
     return render(request,'storyteller_app/index.html')
- 
+
+
+
 #story like
 def post_likes(request, pk):
     
@@ -185,6 +195,8 @@ def post_likes(request, pk):
         
         return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
+
+
 #story like in chat room
 def in_post_likes(request, pk):
     
@@ -192,18 +204,12 @@ def in_post_likes(request, pk):
     
     Post.objects.filter(created_id=temp_pk).update(post_likes = F('post_likes')+1)
     
-    #return redirect("story",intopk.post_id)
     story_list = Story.objects.filter(post_id=temp_pk).all()
     post_story = Post.objects.get(created_id=temp_pk)
+    return render(request, 'storyteller_app/refresh_bottom.html',{'story': story_list, 'post': post_story})
     
-    if request.is_ajax():
-        story_list = Story.objects.filter(post_id=temp_pk).all()
-        post_story = Post.objects.get(created_id=temp_pk)
-        return render(request, 'storyteller_app/refresh_bottom.html',{'story': story_list, 'post': post_story})
-    
-    else:
-    
-        return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+
+
 
 #hot sort
 def hot_sort(request):
@@ -224,6 +230,8 @@ def hot_sort(request):
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
+
+
 #new sort
 def new_sort(request):
 
@@ -243,7 +251,9 @@ def new_sort(request):
 
     return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
     
-    
+ 
+ 
+   
 #follow
 def follow(request,pk):
     temp_pk = pk
@@ -270,6 +280,24 @@ def follow(request,pk):
         
 
 
+#upload image     
+def upload_img(request):
+    
+    
+    
+    
+    if request.method == 'POST':
+        Img.objects.update_or_create(
+            username=request.user.username,
+            img=request.FILES.get('img'),
+            )
+            
+
+  
+    return redirect("personal",request.user.username)
+
+
+
 
 @login_required
 def personal(request, pk):
@@ -288,8 +316,9 @@ def personal(request, pk):
             
     my_followlist = Follow.objects.filter(follow_who=temp_pk).all()
     user = User.objects.get(username = temp_pk)
-    
+    img = Img.objects.filter(username = temp_pk).order_by('-pk')[0]
     my_followlist = Follow.objects.filter(follow_who=request.user.username).all()
+    
     
     #cal exp
     person_exp = person_likes
@@ -305,13 +334,14 @@ def personal(request, pk):
     show_expInt = int(show_exp)
 
 
-    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist, 'other_user':user,'show_exp':show_exp,'person_level':person_level,'show_expInt':show_expInt})
+    return render(request,'storyteller_app/personal.html', {'person_likes': person_likes,'followlist':my_followlist, 'other_user':user,'show_exp':show_exp
+    ,'person_level':person_level,'show_expInt':show_expInt,'my_img':img})
     
 
 
    
 def login(request):
-    return render_to_response('registration/login.html',)      
+    return render_to_response('registration/login.html',) 
 
 
 
@@ -325,6 +355,11 @@ def register(request):
             password=form.cleaned_data['password1'],
             email=form.cleaned_data['email']
             )
+            
+            Img.objects.create(
+                username = form.cleaned_data['username'],
+            )
+            
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()

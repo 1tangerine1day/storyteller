@@ -1,5 +1,5 @@
 from django import forms
-from .models import Story,Post,Follow
+from .models import Story,Post,Follow,Img
 from django.core.exceptions import ValidationError
 import re
 from django.contrib.auth.models import User
@@ -11,13 +11,13 @@ class AddForm(forms.Form):
     
     class Meta:
         model = Story
-        fields = ('context', 'time', 'auther', 'post_id', 'story_id', 'likes', 'created_auther')
+        fields = ('context', 'time', 'auther', 'post_id', 'story_id', 'likes','auther_img')
 	
 class AddForm2(forms.Form):
     
     class Meta:
     	model = Post
-    	fields = ('storyTitle', 'created_id', 'created_at', 'created_day', 'created_mon','post_likes', 'firstSentence',)
+    	fields = ('storyTitle', 'created_id', 'created_at', 'created_day', 'created_mon','post_likes', 'firstSentence','created_auther')
     	
     	
 class FollowForm(forms.Form):
@@ -26,7 +26,12 @@ class FollowForm(forms.Form):
     	model = Follow
     	fields = ('follow_post', 'follow_who', 'follow_created_id', 'follow_created_at', 'follow_likes', 'follow_firstSentence','follow_storyTitle',)
     	
-    	
+class imgForm(forms.Form):
+    
+    class Meta:
+    	model = Img
+    	fields = ('username', 'img',)
+  	
 
 class RegistrationForm(forms.Form):
     
@@ -34,6 +39,7 @@ class RegistrationForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Email address"))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password (again)"))
+    
  
     def clean_username(self):
         try:

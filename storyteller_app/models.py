@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+
 # Create your models here.
 
 class Story(models.Model):
@@ -12,6 +13,8 @@ class Story(models.Model):
     post_id = models.IntegerField(default=0)
     story_id = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
+    auther_img = models.ImageField(upload_to="upload", default="default.jpg")
+
     
     def __str__(self):
 		return self.context
@@ -26,6 +29,7 @@ class Post(models.Model):
 	firstSentence = models.CharField(max_length=25)
 	created_auther = models.CharField(max_length=25)
 	
+	
 	def __str__(self):
 		return self.storyTitle
 	
@@ -38,6 +42,15 @@ class Follow(models.Model):
 	follow_likes = models.IntegerField(default=0)
 	follow_firstSentence = models.CharField(max_length=25)
 	follow_storyTitle = models.CharField(max_length=25)
+	
+	
+
+	
+class Img(models.Model):
+	username = models.CharField(max_length=25)
+	img = models.ImageField(upload_to="upload", default="default.jpg")
+	
+	
 
 	
 
