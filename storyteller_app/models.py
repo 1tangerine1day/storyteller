@@ -16,9 +16,6 @@ class Story(models.Model):
     auther_img = models.ImageField(upload_to="upload", default="default.jpg")
 
     
-    def __str__(self):
-		return self.context
-    
 class Post(models.Model):
 	storyTitle = models.CharField(max_length=25)
 	created_id = models.CharField(max_length=25)
@@ -28,10 +25,7 @@ class Post(models.Model):
 	post_likes = models.IntegerField(default=0)
 	firstSentence = models.CharField(max_length=25)
 	created_auther = models.CharField(max_length=25)
-	
-	
-	def __str__(self):
-		return self.storyTitle
+
 	
 	
 class Follow(models.Model):
@@ -49,8 +43,7 @@ class Follow(models.Model):
 class Img(models.Model):
 	username = models.CharField(max_length=25)
 	img = models.ImageField(upload_to="upload", default="default.jpg")
-	def __str__(self):
-		return self.username
+
 	
 	
 
