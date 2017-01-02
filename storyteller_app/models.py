@@ -49,6 +49,8 @@ class Follow(models.Model):
 class Img(models.Model):
 	username = models.CharField(max_length=25)
 	img = models.ImageField(upload_to="upload", default="default.jpg")
+	def __str__(self):
+		return self.username
 	
 	
 

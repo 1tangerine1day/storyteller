@@ -14,6 +14,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
 from django.contrib.auth import logout
 import time
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def story(request, pk):
@@ -283,14 +284,13 @@ def follow(request,pk):
 #upload image     
 def upload_img(request):
     
-    
-    
-    
     if request.method == 'POST':
-        Img.objects.update_or_create(
-            username=request.user.username,
-            img=request.FILES.get('img'),
-            )
+        django_form = imgForm(request.POST)
+        if django_form.is_valid():
+            Img.objects.update_or_create(
+                username=request.user.username,
+                img=request.FILES.get('img'),
+                )
             
 
   
@@ -316,7 +316,19 @@ def personal(request, pk):
             
     my_followlist = Follow.objects.filter(follow_who=temp_pk).all()
     user = User.objects.get(username = temp_pk)
-    img = Img.objects.filter(username = temp_pk).order_by('-pk')[0]
+    
+    
+    #super has no image give it a image
+    try:
+        #get user imge in form (the top one)
+        img = Img.objects.filter(username = temp_pk).order_by('-pk')[0]
+    except IndexError:
+        Img.objects.create(
+                username = temp_pk,
+            )
+        img = Img.objects.filter(username = temp_pk).order_by('-pk')[0]
+        
+    #get follow from 
     my_followlist = Follow.objects.filter(follow_who=request.user.username).all()
     
     
