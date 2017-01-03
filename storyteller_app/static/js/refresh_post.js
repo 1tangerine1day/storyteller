@@ -1,5 +1,3 @@
-var what_page = 2;
-
 function likes_post(id) {
     
     var iurl = "/post_likes/123/";
@@ -16,7 +14,6 @@ function likes_post(id) {
 
         // handle a successful response
         success : function(data) {
-            alert ("work"  + data);
             $(idiv).html(data);
 
         },
@@ -30,8 +27,53 @@ function likes_post(id) {
     
 }
 
-function page(tem){
-    what_page = tem;
+
+
+
+function new() {
+    
+    $.ajax({
+        url : "/new/", 
+        
+        datatype:"html",
+
+        // handle a successful response
+        success : function(data) {
+            alert ("work"  + data);
+            $(#refresh_post).html(data);
+
+        },
+
+        // handle a non-successful response
+        error : function(data,xhr,errmsg,err) {
+            alert ("not work"  + data);
+        }
+    
+    });
+    
+}
+
+function hot() {
+    
+    $.ajax({
+        url : "/hot/", 
+        
+        datatype:"html",
+
+        // handle a successful response
+        success : function(data) {
+            alert ("work"  + data);
+            $(#refresh_post).html(data);
+
+        },
+
+        // handle a non-successful response
+        error : function(data,xhr,errmsg,err) {
+            alert ("not work"  + data);
+        }
+    
+    });
+    
 }
 
 

@@ -149,8 +149,8 @@ def addpost(request):
             )
             
 
-            post_list  = Post.objects.all()
-            return render(request,'storyteller_app/collection_e.html',{'post': post_list})
+            
+            return redirect("story",intopk.created_id)
         
         else:
             post_list  = Post.objects.all()
@@ -229,7 +229,7 @@ def hot_sort(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
 
-    return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
+    return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
 
 
 
@@ -250,7 +250,7 @@ def new_sort(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
 
-    return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
+    return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
     
  
  
