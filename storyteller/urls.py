@@ -14,7 +14,7 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from storyteller_app import views
 from django.contrib.auth.views import login
@@ -43,6 +43,9 @@ urlpatterns = [
     url(r'^accounts/login/$', login),
     url(r'^logout/$', views.logout_page),
     url(r'^upload_img/$', views.upload_img, name="upload_img"),
+    
+    url(r'^index/', views.index, name='index'),
+    url(r'^accounts/', include('allauth.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

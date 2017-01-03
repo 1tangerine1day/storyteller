@@ -1,44 +1,32 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<!-- saved from url=(0063)http://thebootstrapthemes.com/live/thebootstrapthemes-personal/ -->
 <html lang="en">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Story Teller</title>
+<head>
+	<title>Story Teller</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<!-- font awesome -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<!-- animate.css -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'css/set.css' %}">
+	<link rel="stylesheet" href="{% static 'css/blueimp-gallery.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/create.css' %}">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<!-- font awesome -->
-<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
-<!-- bootstrap -->
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-<!-- animate.css -->
-<link rel="stylesheet" href="{% static 'css/animate.css' %}">
-<link rel="stylesheet" href="{% static 'css/set.css' %}">
-<!-- gallery -->
-<link rel="stylesheet" href="{% static 'css/blueimp-gallery.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/create.css' %}">
-
-<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/touchSwipe.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/respond.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/touchSwipe.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/respond.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/create.js' %}"></script>
 </head>
-
 <body>
-	
-	
-	
-
-
-	
-<div id="home">
-	
-	
-<nav class="navbar navbar-default">
+	<div id="home">
+	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -55,7 +43,7 @@
 	      	{% if user.is_authenticated %}
 	      	<li><a href="{% url 'personal' user.username %}">{{ user.username }}</a></li>
 	      	{% else %}
-	        <li><a href="javascript: return false;" onclick="window.location.href='/login/' ">Log in</a></li>
+	        <li><a href="javascript: return false;" onclick="window.location.href='/login?redirect=index' ">Log in</a></li>
 	        {% endif %}
 	      	<li><a id="create" href="#">Create</a></li>
 	      	<li><a href="{% url 'collection_f' %}">Finished Story</a></li>

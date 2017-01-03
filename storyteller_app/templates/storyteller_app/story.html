@@ -49,7 +49,7 @@
 	      	{% if user.is_authenticated %}
 	      	<li><a href="{% url 'personal' user.username %}">{{ user.username }}</a></li>
 	      	{% else %}
-	        <li><a href="javascript: return false;" onclick="window.location.href='/login/' ">Log in</a></li>
+	        <li><a href="javascript: return false;" onclick="window.location.href='/login?redirect=story&id='+{{ post.created_id }}; ">Log in</a></li>
 	        {% endif %}
 	      	<li><a id="create" href="#">Create</a></li>
 	      	<li><a href="{% url 'collection_f' %}">Finished Story</a></li>

@@ -46,7 +46,7 @@
 	      	{% if user.is_authenticated %}
 	      	<li><a href="{% url 'personal' user.username %}">{{ user.username }}</a></li>
 	      	{% else %}
-	        <li><a href="javascript: return false;" onclick="window.location.href='/login/' ">Log in</a></li>
+	        <li><a href="javascript: return false;" onclick="window.location.href='/login?redirect=editing' ">Log in</a></li>
 	        {% endif %}
 	      	<li><a id="create" href="#">Create</a></li>
 	      	<li><a href="{% url 'collection_f' %}">Finished Story</a></li>
@@ -65,7 +65,6 @@
 	    </div>
 	  </div><!-- /.container-fluid -->
 	</nav><!-- /navbar -->
-	
 	
 	<!-- create -->
 	<div class=" black-background " id="create_page" style="display:none;">
