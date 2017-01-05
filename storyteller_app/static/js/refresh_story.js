@@ -99,22 +99,44 @@ function follow(id){
 
 
 var frm = $('#add_story_form');
-    frm.submit(function () {
-        $.ajax({
-            type: frm.attr('method'),
-            url: frm.attr('action'),
-            data: frm.serialize(),
-            success: function (data) {
-                $("#card").html(data);
-                document.getElementById("context").value = "";
-            },
-            error: function(data) {
-                $("#card").html("<h1>You did not login yet.</h1>");
-            }
-        });
-        return false;
+frm.submit(function () {
+    $.ajax({
+        type: frm.attr('method'),
+        url: frm.attr('action'),
+        data: frm.serialize(),
+        success: function (data) {
+            $("#card").html(data);
+            document.getElementById("context").value = "";
+        },
+        error: function(data) {
+            $("#card").html("<h1>You did not login yet.</h1>");
+        }
     });
+    return false;
+});
     
+$(function() {
+	 $("#context").keypress(function (e) {
+        if(e.which == 13) {
+            //submit form via ajax, this is not JS but server side scripting so not showing here
+            $.ajax({
+	            type: frm.attr('method'),
+	            url: frm.attr('action'),
+	            data: frm.serialize(),
+	            success: function (data) {
+	                $("#card").html(data);
+	                document.getElementById("context").value = "";
+	                 $("html, body").animate({ scrollTop: $(document).height()-$(window).height()},0);
+	            },
+	            error: function(data) {
+	                $("#card").html("<h1>You did not login yet.</h1>");
+	            }
+			});
+            $(this).val("");
+            e.preventDefault();
+    	}
+    });
+});
 
 function flip_dialog(message, html) {	
     
@@ -140,5 +162,7 @@ function flip_dialog2(message, html) {
 
 	
 }
+ 
+ 
  
     

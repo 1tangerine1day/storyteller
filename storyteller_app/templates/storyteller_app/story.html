@@ -51,7 +51,7 @@
 	      	{% else %}
 	        <li><a href="javascript: return false;" onclick="window.location.href='/login?redirect=story&id='+{{ post.created_id }}; ">Log in</a></li>
 	        {% endif %}
-	      	<li><a id="create" href="#">Create</a></li>
+	      	<li><a id="create" href="#">Create a new story</a></li>
 	      	<li><a href="{% url 'collection_e' %}">Story</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
@@ -204,13 +204,13 @@
                  </div>
                 
                 <div id ="refresh_bottom">
-                <a onclick="likes_in_post({{post.created_id}});"><i class="fa fa-thumbs-up fa-2x"></i>&nbsp;<b>{{post.post_likes}}&nbsp;Likes</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a onclick="follow({{post.created_id}});"><i class="fa fa-file fa-2x"></i>&nbsp;<b>Follow</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a onclick="likes_in_post({{post.created_id}});"><i class="fa fa-thumbs-up fa-1x"></i>&nbsp;<b>{{post.post_likes}}&nbsp;Likes</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a onclick="follow({{post.created_id}});"><i class="fa fa-file fa-1x"></i>&nbsp;<b>Follow</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <!--<a href="#"><i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b></a>-->
                 
                 {% if user.is_authenticated %}
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://storyteller-a1tangerine1day.c9users.io/story/{{ post.created_id }}/" target="_blank">
-                	<i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b>
+                	<i class="fa fa-share fa-1x"></i>&nbsp;<b>Share</b>
                 </a>
                 {% endif %}
                 </div>
@@ -220,7 +220,7 @@
 
                 
                           
-                <div class="blog-author panel panel-default margin-bottom-30 acomment" id="comment">
+                <div class="blog-author panel panel-default margin-bottom-10 acomment" id="comment">
 					<div class="panel-heading">
 						<h3>&nbsp;&nbsp;What's next ? </h3>
 					</div>
@@ -230,14 +230,9 @@
 			                    <form id="add_story_form" class="form" action="{% url 'story' post.created_id %}" method="POST" role="form">
 			                        {% csrf_token %}
                                     {{ form.as_p }}
-				                    <div class="row margin-bottom-20">
+				                    <div class="row">
                                         <div class="col-md-10">
-						                    <textarea rows="8" maxlength="50" class="form-control" id="context" name="context" style="resize:none;"></textarea>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="comment-avatar">
-                                                <img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt="">
-                                            </div>
+						                    <textarea rows="1" maxlength="50" class="form-control" id="context" name="context" style="resize:none;"></textarea>
                                         </div>
 				                    </div>
 					                <button class="btn btn-primary" type="submit">Send</button>

@@ -37,8 +37,8 @@
  * Avatar
  ---------------------------*/
 .comments-list .comment-avatar {
-	width: 65px;
-	height: 65px;
+	width: 50px;
+	height: 50px;
 	position: relative;
 	float: left;
 	border: 3px solid #FFF;
@@ -102,9 +102,10 @@
 .reply-list .comment-box {
 	width: 610px;
 }
+
 .comment-box .comment-head {
 	background: #FCFCFC;
-	padding: 10px 12px;
+	padding: 0px 10px;
 	border-bottom: 1px solid #E5E5E5;
 	overflow: hidden;
 	-webkit-border-radius: 4px 4px 0 0;
@@ -116,7 +117,7 @@
 	float: right;
 	margin-left: 14px;
 	position: relative;
-	top: 2px;
+	top: 1px;
 	color: #A6A6A6;
 	cursor: pointer;
 	-webkit-transition: color 0.3s ease;
@@ -150,8 +151,8 @@
 
 .comment-box .comment-content {
 	background: #FFF;
-	padding: 12px;
-	font-size: 15px;
+	padding: 1px 12px;
+	font-size: 12px;
 	color: #595959;
 	-webkit-border-radius: 0 0 4px 4px;
 	-moz-border-radius: 0 0 4px 4px;

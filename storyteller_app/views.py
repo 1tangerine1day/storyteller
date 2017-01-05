@@ -33,6 +33,7 @@ def story(request, pk):
                 likes = 0,
                 auther_img = Img.objects.filter(username = request.user.username).order_by('-pk')[0].img
              )   
+             
             #url = reverse('story', kwargs={'story': check_pk})
             #return HttpResponseRedirect(url)
             #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
