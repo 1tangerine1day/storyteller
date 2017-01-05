@@ -164,6 +164,6 @@ STATIC_URL = '/static/'
 #         'VERIFIED_EMAIL': False,
 #         'VERSION': 'v2.4'}}
 
-# # LOGIN_REDIRECT_URL = 'storyteller_app/index.html'
+# LOGIN_REDIRECT_URL = 'storyteller_app/index.html'
 
 # SITE_ID = 1
