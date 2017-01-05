@@ -49,13 +49,11 @@
 	        <li><a href="javascript: return false;" onclick="window.location.href='/login?redirect=editing' ">Log in</a></li>
 	        {% endif %}
 	      	<li><a id="create" href="#">Create</a></li>
-	      	<li><a href="{% url 'collection_f' %}">Finished Story</a></li>
-	      	<li><a href="{% url 'collection_e' %}">Editing Story</a></li>
+	      	<li><a href="{% url 'collection_e' %}">Story</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	            <li><a href="{% url 'index' %}">Home</a></li>
-	            <li><a href="{% url 'collection_f' %}">Finished story</a></li>
 	            <li><a href="team.html">About us</a></li>
 	            <li role="separator" class="divider"></li>
 	            <li><a href="javascript: return false;" onclick="window.location.href='/logout/' ">Log out</a></li>
@@ -105,7 +103,7 @@
 	<!-- finish -->
 	<div class="row selection">
 		<div class="col-md-offset-3 col-md-4 col-xs-offset-3 col-xs-9">
-			<h2>Editing Story</h2>
+			<h2>Story</h2>
 		</div>
 		<div class="col-md-offset-1 col-md-3 col-xs-offset-3 col-xs-9">
 			<a onclick="new();"><button class="btn btn-black">new</button></a>
@@ -118,54 +116,6 @@
 	</div>
 	<!-- finished story -->
 	
-<!-- 	<div class="row">
-	{% for post in post_list %}	
-	{% if forloop.counter0|divisibleby:3 %}
-	
-		<div class="col-md-offset-3 col-md-2 person-details">
-		
-			<figure class="editing" id="story1">
-				<figcaption>
-				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
-				<span>{{ post.firstSentence }}....</span>
-				</figcaption>
-				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
-			</figure>
-			
-			<ul class="list-inline person-details-icons">
-				<li><p>{{ post.post_likes }}</p></li>
-				<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
-			</ul>
-		</div>
-	
-	{% else %}
-	<div class="col-md-2 person-details">
-			<figure class="editing" id="story1">
-				<figcaption>
-				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
-				<span>{{ post.firstSentence }}....</span>
-				</figcaption>
-				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.pk %}">join edit</a></button>
-			</figure>
-		<ul class="list-inline person-details-icons">
-			<li><p>{{ post.post_likes }}</p></li>
-			<li><a href="{% url 'post_likes' post.pk %}"><i class="fa-lg fa-thumbs-up"></i></a></li>
-		</ul>
-	</div>
-	{% endif %}
-	{% endfor %}
-</div> --><!-- /.row
-	<div class="text-center">
-	   <ul class="pagination">
-	      <li><a href="#">&laquo;</a></li>
-	      <li class="active"><a href="#">1</a></li>
-	      <li><a href="#">2</a></li>
-	      <li><a href="#">3</a></li>
-	      <li><a href="#">4</a></li>
-	      <li><a href="#">5</a></li>
-	      <li><a href="#">&raquo;</a></li>
-	   </ul>
-	</div> -->
 <div id ="refresh_post">
 {% for post in contacts %}
     {# Each "contact" is a Contact model object. #}
