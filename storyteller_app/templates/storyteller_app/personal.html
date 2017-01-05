@@ -72,7 +72,7 @@
 				<!-- <div class="col-md-offset-3 col-md-12"> -->
 					<div class="col-md-12">
 						<div class="col-md-offset-2  col-xs-offset-4 col-md-10 col-xs-6 margin-top-20">
-							<h2>About Me</h2>
+							<h3>About Me</h3>
 						</div>
 						
 					<div class="row ">
@@ -88,15 +88,16 @@
 							
 						</div>
 						<div class="col-md-6 ">
-							<h3 class="padding-top-20 pull-left">{{ other_user.username }} <small>- Software Developer</small></h3>
+							<h1 class="padding-top-20 pull-left">{{ other_user.username }}</h1>
 							<div class="clearfix"></div>
-							<p></p>
-							<img src="{% static 'img/pen.png' %}"  width="30" class="margin-top-20">
-							<img src="{% static 'img/roadhog.png' %}"  width="30" class="margin-top-20">
-							<img src="{% static 'img/mei.png' %}"  width="30" class="margin-top-20">
-							<img src="{% static 'img/ana.png' %}"  width="30" class="margin-top-20">
+							<br>
+							<br>
+							<!--<img src="{% static 'img/pen.png' %}"  width="30" class="margin-top-20">-->
+							<!--<img src="{% static 'img/roadhog.png' %}"  width="30" class="margin-top-20">-->
+							<!--<img src="{% static 'img/mei.png' %}"  width="30" class="margin-top-20">-->
+							<!--<img src="{% static 'img/ana.png' %}"  width="30" class="margin-top-20">-->
 							<div>
-								<h3 class="progress-label">
+								<h3 class="progress-label ">
   									Level {{person_level}} ({{person_likes}} likes)
   									<span class="pull-right">{{show_expInt}}%</span>
 								</h3>
@@ -127,13 +128,13 @@
 	
 	<div class=" col-md-12">
 		<div class="col-md-offset-2 col-xs-offset-2 col-md-7 col-xs-7 margin-top-40">
-			<h3>Followed Story</h3>
+			<h3>Your Followed</h3>
 		</div>
 	</div>
 
 	<!-- line -->
-	<div class="col-md-12 margin-top-10">
-		<div class="col-md-offset-2 col-xs-offset-2 col-md-10 col-xs-6" id="line"></div>
+	<div class="margin-top-10">
+		<div class="col-md-offset-2 col-xs-offset-2 col-md-8 col-xs-6" id="line"></div>
 	</div>
 	<!-- finished story -->
 	<div class=" col-md-12">
@@ -145,23 +146,24 @@
 	
 		<div class="col-md-offset-3 col-md-3 person-details">
 		
-			<figure class="editing">
+			<figure class="editing-nohover">
 				<figcaption>
 				<h3 class="margin-bottom-10">{{ follow.follow_storyTitle }}<br/><small>  {{ follow.follow_created_at }}</small></h3>
 				<span>{{  follow.follow_firstSentence }}....</span>
 				</figcaption>
-				<button type="button" class="btn btn-primary"><a href="{% url 'story'  follow.follow_created_id %}">join edit</a></button>
+				<!--<button type="button" class="btn btn-primary "><a href="{% url 'story'  follow.follow_created_id %}">join edit</a></button>-->
 			</figure>
 			
-			<ul class="list-inline person-details-icons">
-				<li><p>{{  follow.follow_likes }}</p></li>
-				<li><a onclick="likes_post({{  follow.follow_created_id }});"><i class="fa-lg fa-thumbs-up"></i></a></li>
+			<ul class="list-inline person-details-icons ">
+				
+				<a href="{% url 'story'  follow.follow_created_id %}" class="white1"><b>join edit</b></a>
+				
 			</ul>
 		</div>
 	
 	{% else %}
 	<div class="col-md-3 person-details">
-			<figure class="editing">
+			<figure class="editing-nohover">
 				<figcaption>
 				<h3 class="margin-bottom-10">{{  follow.follow_storyTitle }}<br/><small>  {{  follow.follow_created_at }}</small></h3>
 				<span>{{  follow.follow_firstSentence }}....</span>
@@ -169,8 +171,7 @@
 				<button type="button" class="btn btn-primary"><a href="{% url 'story'  follow.follow_created_id %}">join edit</a></button>
 			</figure>
 		<ul class="list-inline person-details-icons">
-			<li><p>{{ follow.follow_likes }}</p></li>
-			<li><a onclick="likes_post({{  follow.follow_created_id }});"><i class="fa-lg fa-thumbs-up"></i></a></li>
+			<a href="{% url 'story'  follow.follow_created_id %}" class="white1"><b>join edit</b></a>
 		</ul>
 	</div>
 	{% endif %}

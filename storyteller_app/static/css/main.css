@@ -117,8 +117,9 @@ figure > figcaption > h3 > small {
 	margin-top: 70px;
 }
 
+
 #line {
-	width: 100%;
+	
 	height: 1px;
 	background-color: gray;
 }
@@ -141,6 +142,17 @@ a .btn-black {
 	text-align: center;
 }
 
+.editing-nohover {
+	height: 200px;
+	text-align: center;
+}
+
+.nohover-btn {
+	background-color: gray;
+	color: #ffffff;
+	border:0px
+}
+
 figure .btn-primary {
 	display: none;
 	margin-top: 50px;
@@ -150,6 +162,12 @@ figure .btn-primary {
 figure .btn-primary a {
 	color: white;
 }
+
+.white1{
+  color:white;
+}
+
+
 
 .list-inline {
 	height: 40px;
