@@ -1,3 +1,16 @@
+$(window).load(function() {
+	/* slide */
+	$('#up-to-top').click(function(e) {
+		$('html,body').animate({scrollTop:0}, 1000);
+		 e.preventDefault();
+	});
+	
+	$('#down-to-bottom').click(function(e) {
+		$("html, body").animate({ scrollTop: $(document).height()-$(window).height() }, 1000);
+		 e.preventDefault();
+	});
+});
+
 function countDown(){
     var minID = setInterval(function () {
         minutePlay();

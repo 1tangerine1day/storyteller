@@ -140,3 +140,15 @@ body{
     width: 100%;
 
 }
+
+#up-to-top {
+    position: fixed;
+    bottom: 75px;
+    right: 50px;
+}
+
+#down-to-bottom {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}

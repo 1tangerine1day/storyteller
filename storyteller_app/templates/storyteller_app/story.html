@@ -110,9 +110,6 @@
 	<div id="content" class="container">
     <div class="row margin-vert-30">
         <div class="col-md-12">
-        	
-        	
-        	
 			<div class="blog-post" > 
                 <div class="blog-item-header">
 				    <div class="blog-post-date pull-left">
@@ -217,7 +214,6 @@
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://storyteller-a1tangerine1day.c9users.io/story/{{ post.created_id }}/" target="_blank">
                 	<i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b>
                 </a>
-
                 {% endif %}
                 </div>
                 
@@ -252,17 +248,18 @@
 	                   </div>
                     </div>
 				</div>
-				
-				
-				
-				
 			</div>	
 		</div>
 	</div>
               
-                              
+              
+    <div>
+    	<a href="#"><img id="up-to-top" src="{% static 'img/up-arrow.png' %}"></a>
+    	<a href="#"><img id="down-to-bottom" src="{% static 'img/down-arrow.png' %}"></a>
+    </div>
     <!-- /editting -->
     <script type="text/javascript" src="{% static 'js/refresh_story.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/story.js' %}"></script>
 
 
 </body>
