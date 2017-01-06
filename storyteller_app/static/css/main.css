@@ -211,5 +211,34 @@ figure .btn-primary a {
 
 } 
 
+.banner{
+	margin: 0;
+}
+
+
+/*banner*/
+.banner{position: relative;}
+.banner .caption{position: absolute;top: 0;left:0; right: 0; bottom: 0;background:#F4F1EA; }
+.banner .caption-wrapper{display: table;height: 100%;width: 100%;}
+.banner .caption-info{display: table-cell;vertical-align: middle;text-align: center;color: #333;}
+.banner .caption-info h1{font:normal 4.5em Josefin Sans,Arial,Helvetica;text-transform:capitalize;}
+.banner .caption-info p{font:600 1.7em Josefin Sans,Arial,Helvetica;}
+.banner a.explore{color: #fff;}
+.explore{margin: 0 1em;}
+.banner img.profile{border:5px solid #333;}
+.img-arrowdown{
+    margin-top: 100px
+    
+}
+
+.btn{border:none;border-radius: 0;padding: 1em 4em;background: rgba(0,0,0,0.5);text-transform: uppercase;}
+.btn:hover{color: #ccc;}
+.btn-default{color: #ccc;border: 1px solid #aaa;}
+.btn-default:hover{background: rgba(0,0,0,0.8);}
+.btn-primary{color: #ccc;border: 1px solid #aaa;}
+.btn-primary:hover{background: rgba(0,0,0,0.8);}
+
+
+
 
 
