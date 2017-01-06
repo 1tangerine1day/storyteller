@@ -228,13 +228,24 @@
 					<div class="panel-body">
 	                    <div class="row">
 		                    <div class="col-md-12">
-			                    <form id="add_story_form" class="form" action="{% url 'story' post.created_id %}" method="POST" role="form">
+		                    	{% if user.is_authenticated %}
+			                    <form id="add_story_form" class="form" action="{% url 'story' post.created_id user.username%}" method="POST" role="form">
+			                    {% else %}
+			                    <form id="add_story_form" class="form" action="{% url 'story_not_login' post.created_id %}" method="POST" role="form">
+			                    {% endif %}
 			                        {% csrf_token %}
                                     {{ form.as_p }}
 				                    <div class="row">
-                                        <div class="col-md-10">
-						                    <textarea rows="1" maxlength="100" class="form-control" id="context" name="context" style="resize:none;"></textarea>
+				                    	{% if user.is_authenticated %}
+				                    	<div class="col-md-1 comment-avatar"><img src="{{my_img.img.url}}" alt=""></div>
+                                        <div class="col-md-9">
+						                    <textarea rows="2" maxlength="100" class="form-control" id="context" name="context" style="resize:none;"></textarea>
                                         </div>
+                                        {% else %}
+                                        <div class="col-md-10">
+						                    <textarea rows="2" maxlength="100" class="form-control" id="context" name="context" style="resize:none;"></textarea>
+                                        </div>
+                                        {% endif %}
 				                    </div>
 					                <button class="btn btn-primary" type="submit">Send</button>
 				                </form>

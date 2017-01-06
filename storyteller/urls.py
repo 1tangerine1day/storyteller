@@ -25,7 +25,8 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^story/(?P<pk>\d+)/', views.story, name='story'),
+    url(r'^story/(?P<pk>\d+)/(?P<name>\w+)', views.story, name='story'),
+    url(r'^story/(?P<pk>\d+)/', views.story_not_login, name='story_not_login'),
     url(r'^likes/(?P<pk>\d+)/', views.likes, name='likes'),
     url(r'^post_likes/(?P<pk>\d+)/', views.post_likes, name='post_likes'),
     url(r'^in_post_likes/(?P<pk>\d+)/', views.in_post_likes, name='in_post_likes'),

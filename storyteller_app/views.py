@@ -17,9 +17,20 @@ import time
 from django.core.exceptions import ObjectDoesNotExist
 
 
-def story(request, pk):
+def story(request, pk, name):
     
     check_pk = pk
+    check_name = name
+    
+    try:
+        #get user imge in form (the top one)
+        img = Img.objects.filter(username = check_name).order_by('-pk')[0]
+    except IndexError:
+        Img.objects.create(
+                username = check_name,
+        )
+        img = Img.objects.filter(username = check_name).order_by('-pk')[0]
+        
     if request.method == 'POST':
         django_form = AddForm(request.POST)
         if django_form.is_valid():
@@ -31,8 +42,61 @@ def story(request, pk):
                 time = strftime("%Y %b %d %X",localtime()),
                 post_id = check_pk,
                 likes = 0,
-                auther_img = Img.objects.filter(username = request.user.username).order_by('-pk')[0].img
-             )   
+                auther_img = Img.objects.get(username = request.user.username).order_by('-pk')[0].img
+            )   
+             
+            #url = reverse('story', kwargs={'story': check_pk})
+            #return HttpResponseRedirect(url)
+            #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+            try:
+                intopk = Post.objects.get(created_id=check_pk)
+            except Story.DoesNotExist:
+                intopk = Post.objects.order_by('-pk')[0]
+
+            
+            return HttpResponseRedirect("story",intopk.created_id)
+            #story_list = Story.objects.filter(post_id=check_pk).all()
+            #post_story = Post.objects.get(pk=check_pk)
+            #return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story})
+
+        
+        else:
+            #return HttpResponseRedirect(request, 'mycontacts/show.html',{'story': story_list})   
+            #url = reverse('story', kwargs={'story': check_pk})
+            #return HttpResponseRedirect(url)
+            story_list = Story.objects.filter(post_id=check_pk).all()
+            post_story = Post.objects.get(created_id=check_pk)
+            
+            
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story, 'my_img': img,})
+    
+    else:
+        story_list = Story.objects.filter(post_id=check_pk).all()
+        post_story = Post.objects.get(created_id=check_pk)
+        
+        
+        if request.is_ajax():
+            return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story, 'my_img': img,})
+        else:
+            return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story, 'my_img': img,})
+     
+def story_not_login(request, pk):
+    
+    check_pk = pk
+    
+    if request.method == 'POST':
+        django_form = AddForm(request.POST)
+        if django_form.is_valid():
+            new_context = django_form.data.get("context")
+            
+            Story.objects.create(
+                context =  new_context, 
+                auther = User.objects.get(username=request.user.username),
+                time = strftime("%Y %b %d %X",localtime()),
+                post_id = check_pk,
+                likes = 0,
+                auther_img = Img.objects.get(username = request.user.username).order_by('-pk')[0].img
+            )   
              
             #url = reverse('story', kwargs={'story': check_pk})
             #return HttpResponseRedirect(url)
@@ -68,7 +132,6 @@ def story(request, pk):
             return render(request, 'storyteller_app/refresh_story.html',{'story': story_list, 'post': post_story,})
         else:
             return render(request, 'storyteller_app/story.html',{'story': story_list, 'post': post_story,})
-     
 #message like   
 def likes(request, pk):
     
@@ -291,13 +354,10 @@ def upload_img(request):
             Img.objects.update_or_create(
                 username=request.user.username,
                 img=request.FILES.get('img'),
-                )
+            )
             
-
-  
     return redirect("personal",request.user.username)
-
-
+    
 
 
 @login_required
