@@ -65,39 +65,40 @@
 	</nav><!-- /navbar -->
 	
 	<!-- create -->
-	<div class=" black-background " id="create_page" style="display:none;">
-		<div class="create-background col-md-offset-2 col-md-8 
-			col-xs-offset-2 col-xs-6 mid">
+	<div class=" black-background col-md-12" id="create_page" style="display:none;">
+		<div class="create-background self-col self-col-offset mid">
 			<div class="row">	
 				<div class="col-md-12">	
 				 <form  class="form" action="{% url 'addpost' %}" method="POST" role="form">
 				 {% csrf_token %}
                  {{ form.as_p }}
-					<div class="col-md-offset-4 col-md-7 col-xs-10">
-						<h1>建立你的故事</h1>
+                 
+					<div class="col-md-offset-4 col-md-6 col-xs-10">
+						
+						<r class="create-h3">Create your story</r>
+						
 					</div>
 					<div class="icon-top" >
-						<a id="close_create" href="#"><img src="{% static 'img/ic_clear_b.png' %}"></a>
+						<a id="close_create" href="#"><img src="{% static 'img/ic_clear_b.png' %}" width="20"></a>
 					</div>
 				</div>
 				<!-- 標題取值 -->
 				<div>
-					<input type="text"  id="new-title" class="ttop input-area col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8"
+					<input type="text"  id="new-title" class="tttop input-area create-offset-text"
 					placeholder="標題"  name="new-title" maxlength="10"/>
-				</div>
 				<!-- 第一句取值 -->
-	            <div>
-	            	<textarea class="ttop text-area col-md-offset-2 col-md-8 col-xs-12" id="first-sentence "  name="first-sentence" 
+	            	<textarea class=" text-area create-offset-textarea create-textarea" id="first-sentence"  name="first-sentence" 
 	            	rows="5" cols="50" placeholder="開頭" maxlength="20"></textarea>
 	            </div>
-	            <div class="">
-					<button type="submit" class="btn-area ttop col-md-offset-8 col-md-2">send</button>
+	            <div>
+					<button type="submit" class="btn-area ttop create-offset-send col-md-2">send</button>
 				</div>
 				
 				</form>
 	        </div>
 		</div>					 				
 	</div>
+<!--end-create-->
 	
 
 	<!-- finish -->
