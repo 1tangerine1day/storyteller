@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^upload_img/$', views.upload_img, name="upload_img"),
     
     url(r'^index/', views.index, name='index'),
-    # url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
