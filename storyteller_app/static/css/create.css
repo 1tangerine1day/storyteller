@@ -1,7 +1,6 @@
 .black-background {
   position:fixed; top: 0px; left: 0px; 
   
-  width: 100%;
   height: 100%;
   z-index: 10;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cfd8dc+0,607d8b+100,b0bec5+100 */
@@ -15,19 +14,22 @@
 
 .create-background {  
 
-	width: 66.66666666666666%;
-	height: 50%;
+	height: 30%;
 	overflow: hidden;
 	background-color: #F4F1EA;
-	border: 1px ;
+	/*border: 1px ;*/
 	border-radius: 5px;
   
 }
 .mid{
-	margin-top: 150px;
+	margin-top: 180px;
 }
 .ttop{
-	margin-top: 30px;
+	margin-top: 5px;
+}
+
+.tttop{
+	margin-top: 15px;
 }
 
 .icon-left{
@@ -35,7 +37,8 @@
 }
 
 .icon-top{
-	margin-top: 20px;
+	margin-top: 10px;
+	margin-right: 10px;
 	float:right;
 }
 
@@ -43,7 +46,7 @@
 	font-size:16px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
-	color: black
+	color: black;
 }
 
 .text-area{
@@ -57,9 +60,10 @@
 }
 
 .btn-area{
-	border: 1px solid #cccccc;
+	border: 1px solid #000000;
   border-radius: 5px;
-  color: black;
+  color: #ffffff;
+  background-color: #000000;
 
 }
 
@@ -86,6 +90,33 @@
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
+.self-col{
+  
+  width: 44%;
+}
 
+.self-col-offset{
+  margin-left: 28%;
+}
 
+.create-h3{
+  margin-top:10px;
+  font-size: 24px;
+}
 
+.create-offset-text{
+    margin-left: 4%;
+}
+
+.create-offset-textarea{
+    margin-top: 5px;
+    margin-left: 4%;
+}
+
+.create-textarea{
+    width: 92%;
+}
+
+.create-offset-send{
+    margin-left: 79.3333333333%;
+}
