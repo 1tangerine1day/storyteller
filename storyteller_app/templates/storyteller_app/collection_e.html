@@ -130,7 +130,11 @@
 				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
 				<span>{{ post.firstSentence }}....</span>
 				</figcaption>
-				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.created_id %}">join edit</a></button>
+				{% if user.is_authenticated %}
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.created_id user.username %}">join edit</a></button>
+				{% else %}
+				<button type="button" class="btn btn-primary"><a href="{% url 'story_not_login' post.created_id %}">join edit</a></button>
+				{% endif %}
 			</figure>
 			<div id ="refresh_like_{{ post.created_id }}">
 			<ul class="list-inline person-details-icons">
@@ -147,7 +151,11 @@
 				<h3 class="margin-bottom-10">{{ post.storyTitle }}<br/><small>  {{ post.created_at }}</small></h3>
 				<span>{{ post.firstSentence }}....</span>
 				</figcaption>
-				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.created_id %}">join edit</a></button>
+				{% if user.is_authenticated %}
+				<button type="button" class="btn btn-primary"><a href="{% url 'story' post.created_id user.username %}">join edit</a></button>
+				{% else %}
+				<button type="button" class="btn btn-primary"><a href="{% url 'story_not_login' post.created_id %}">join edit</a></button>
+				{% endif %}
 			</figure>
 		<div id ="refresh_like_{{ post.created_id }}">
 		<ul class="list-inline person-details-icons">
