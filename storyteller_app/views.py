@@ -42,7 +42,7 @@ def story(request, pk, name):
                 time = strftime("%Y %b %d %X",localtime()),
                 post_id = check_pk,
                 likes = 0,
-                auther_img = Img.objects.get(username = request.user.username).order_by('-pk')[0].img
+                auther_img = img.img,
             )   
              
             #url = reverse('story', kwargs={'story': check_pk})
