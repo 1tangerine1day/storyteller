@@ -14,7 +14,7 @@
 
 .create-background {  
 
-	height: 37%;
+	height: 240px;
 	overflow: hidden;
 	background-color: #F4F1EA;
 	/*border: 1px ;*/
@@ -60,10 +60,10 @@
 }
 
 .btn-area{
-	border: 1px solid #000000;
+	border: 1px solid #666666;
   border-radius: 5px;
   color: #ffffff;
-  background-color: #000000;
+  background-color: #666666;
 
 }
 
