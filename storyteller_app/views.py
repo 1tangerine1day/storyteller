@@ -211,7 +211,7 @@ def addpost(request):
             
 
             
-            return redirect("story",intopk.created_id)
+            return redirect("story",intopk.created_id,request.user.username)
         
         else:
             post_list  = Post.objects.all()
