@@ -104,6 +104,10 @@ button:hover {
   font-weight: 600;
 }
 
+a > .fb_button {
+  background-color: blue;
+  font-size: 55px;
+}
 @-webkit-keyframes square {
   0% {
     -webkit-transform: translateY(0);

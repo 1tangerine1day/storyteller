@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^personal/(?P<pk>\w+)', views.personal, name='personal'),
     url(r'^login/$', login),
     url(r'^register/$', views.register),
-    url(r'^register/success/$', views.register_success),
+    url(r'^register/success/', views.register_success),
     url(r'^accounts/login/$', login),
     url(r'^logout/$', views.logout_page),
     url(r'^upload_img/$', views.upload_img, name="upload_img"),
