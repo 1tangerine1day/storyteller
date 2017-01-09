@@ -131,13 +131,10 @@
                         		    <h3>&nbsp;&nbsp;Story</h3>
 	                            </div>
 								<div class="panel-body">
-
                                 <div class="flip-container">
                                     <div class="flipper" id="card">
-                
         								<div class = "front" id="front">
                                         <div class="comments-container">
-									
                                             <ul id="comments-list" class="comments-list">
                                                 {% for story in story %}
                                                 <li>
@@ -153,13 +150,9 @@
                                                                 <h6 class="comment-name"><a href="{% url 'personal' story.auther %}">{{story.auther}}</a></h6>
                                                                 {% endif %}
                                                                 <span>{{ story.time }}</span>
-                                                                    
-                                                                    <a onclick="likes_story({{story.pk}});">
-                                                                    
-                                                                        <i class="fa fa-heart" >{{ story.likes }}</i>
-                                                    
-                                                                    </a>
-                                                                
+                                                                <a onclick="likes_story({{story.pk}});">
+                                                                   <i class="fa fa-heart" >{{ story.likes }}</i>
+                                                                </a>
                                                             </div>
                                                             <div class="comment-content">
                                                                 {{ story.context }}
@@ -207,7 +200,7 @@
                 <div id ="refresh_bottom">
                 <a onclick="likes_in_post({{post.created_id}});"><i class="fa fa-thumbs-up fa-1x"></i>&nbsp;<b>{{post.post_likes}}&nbsp;Likes</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a onclick="follow({{post.created_id}});"><i class="fa fa-file fa-1x"></i>&nbsp;<b>Follow</b></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <!--<a href="#"><i class="fa fa-share fa-2x"></i>&nbsp;<b>Share</b></a>-->
+          
                 
                 {% if user.is_authenticated %}
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://storyteller-a1tangerine1day.c9users.io/story/{{ post.created_id }}/" target="_blank">
@@ -239,15 +232,19 @@
 				                    	{% if user.is_authenticated %}
 				                    	<div class="col-md-1 comment-avatar"><img src="{{my_img.img.url}}" alt=""></div>
                                         <div class="col-md-9">
-						                    <textarea rows="2" maxlength="100" class="form-control" id="context" name="context" style="resize:none;"></textarea>
+						                    <textarea rows="2" maxlength="80" class="form-control" id="context" name="context" style="resize:none;"></textarea>
                                         </div>
                                         {% else %}
                                         <div class="col-md-10">
-						                    <textarea rows="2" maxlength="100" class="form-control" id="context" name="context" style="resize:none;"></textarea>
+						                    <textarea rows="2" maxlength="100" class="form-control" id="context" name="context" disabled style="resize:none;"></textarea>
                                         </div>
                                         {% endif %}
 				                    </div>
+				                    {% if user.is_authenticated %}
 					                <button class="btn btn-primary" type="submit">Send</button>
+					                {% else %}
+					                <button class="btn btn-primary" type="submit" disabled>Send</button>
+					                {% endif %}
 				                </form>
 		                    </div>        
 	                   </div>
