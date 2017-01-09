@@ -14,7 +14,7 @@
         <button type="submit"  value="Login" id="login-button">Login</button>
         <button type="button" onclick="window.location.href='/register/?redirect={{ request.GET.redirect }}/{{ request.GET.id }}'">Register</button><br/><br/>
         <a href="{% provider_login_url "facebook" method="oauth2" %}?next=/{{ request.GET.redirect }}/{{ request.GET.id }}">Login with Facebook</a>
-        <input type="hidden" name="next" value="/{{ request.GET.redirect }}/{{ request.GET.id }}" />
+        
     </form>
 
 {% endblock %}
