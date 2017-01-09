@@ -223,9 +223,15 @@ def addpost(request):
 
 
 
+
 #index.html
 def index(request):
-    return render(request,'storyteller_app/index.html')
+    
+    post_list = Post.objects.all().order_by('-post_likes')[:6]
+    
+    
+    return render(request,'storyteller_app/index.html',{'posts':post_list})
+
 
 
 
