@@ -168,10 +168,7 @@ def collection_e(request):
     else:
         return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
-# collection_f.html
-def collection_f(request):
-    
-    return render(request,'storyteller_app/collection_f.html')
+
      
 #create a new story
 def addpost(request):
@@ -293,7 +290,10 @@ def hot_sort(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
 
-    return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    if request.is_ajax():
+        return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    else:
+        return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
 
 
@@ -314,7 +314,10 @@ def new_sort(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
 
-    return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    if request.is_ajax():
+        return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    else:
+        return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
     
  
  
