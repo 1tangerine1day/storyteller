@@ -7,6 +7,8 @@
         <table border="0" style="margin-left:10%">
             {{ form.as_table }}
         </table>
-        <button type="submit" value="Register/?redirect={{ request.GET.redirect }}/{{ request.GET.id }} ">Register</button>
+        <button type="submit" value="Register" onclick="window.location.href='/register/?redirect={{ request.GET.redirect }}/{{ request.GET.id }}'">Register</button>
+        <input type="hidden" name="next" value="/{{ request.GET.redirect }}/{{ request.GET.id }}" />
+        <!--<button type="button" onclick="window.location.href='/' ">Login</button>-->
     </form>
 {% endblock %}
