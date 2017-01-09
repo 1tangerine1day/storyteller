@@ -149,13 +149,20 @@ figure > figcaption > h3 > small {
 }
 
 #line {
-	width: 50%;
+	width: 84%;
 	height: 1px;
 	background-color: gray;
 }
 
 a .btn-black {
-	color: black;
+	color: white;
+	background-color: #363539;
+	margin-right: -3px;
+}
+
+a .btn-black:hover {
+	font-weight: 600;
+	color: white;
 }
 
 .person-details {
@@ -242,3 +249,4 @@ figure .btn-primary a {
 	background-color: #DCDCDC;
 
 } 
+

@@ -117,9 +117,9 @@
 				    </div>
 			        <h2><a href="#">{{ post.storyTitle }}</a>
 					<div class="mode-button">
-						<button type="button" class="btn btn-black" onclick = "flip_dialog2('')">edit</button>
-						<button type="button" class="btn btn-black" onclick = "flip_dialog('')">view</button>
-						<button type="button" class="btn btn-black"><a href="{% url 'collection_e' %}">back</a></button>
+						<button type="button" class="btn btn-black" onclick = "flip_dialog2('')">EDIT</button>
+						<button type="button" class="btn btn-black" onclick = "flip_dialog('')">VIEW</button>
+						<button type="button" class="btn btn-black"><a href="{% url 'collection_e' %}">BACK</a></button>
 						</div>
 					</h2>
 				    </div>           
@@ -138,7 +138,7 @@
                                             <ul id="comments-list" class="comments-list">
                                                 {% for story in story %}
                                                 <li>
-                                                    <div class="comment-main-level" >
+                                                    <div class="comment-main-level panel-group" >
                                                     <!-- Avatar -->
                                                     <div class="comment-avatar"><img src="{{story.auther_img.url}}" alt=""></div>
                                                     <!-- Contenedor del Comentario -->
@@ -232,11 +232,12 @@
 				                    	{% if user.is_authenticated %}
 				                    	<div class="col-md-1 comment-avatar"><img src="{{my_img.img.url}}" alt=""></div>
                                         <div class="col-md-9">
-						                    <textarea rows="2" maxlength="80" class="form-control" id="context" name="context" style="resize:none;"></textarea>
+						                    <textarea rows="3" maxlength="80" class="form-control" id="context" name="context" style="resize:none;"></textarea>
                                         </div>
                                         {% else %}
                                         <div class="col-md-10">
-						                    <textarea rows="2" maxlength="100" class="form-control" id="context" name="context" disabled style="resize:none;"></textarea>
+						                    <textarea rows="3" maxlength="100" class="form-control" id="context" name="context" 
+						                    disabled style="resize:none;"></textarea>
                                         </div>
                                         {% endif %}
 				                    </div>

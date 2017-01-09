@@ -187,11 +187,11 @@
 				</figcaption>
 			</figure>
 			<ul class="list-inline person-details-icons">
-			{% if user.is_authenticated %}
-			<a href="{% url 'story'  follow.follow_created_id user.username %}" class="white"><b>join edit</b></a>
-			{% else %}
-			<a href="{% url 'story_not_login'  follow.follow_created_id %}" class="white"><b>join edit</b></a>
-			{% endif %}
+				{% if user.is_authenticated %}
+				<a href="{% url 'story'  follow.follow_created_id user.username %}" class="white"><b>join edit</b></a>
+				{% else %}
+				<a href="{% url 'story_not_login'  follow.follow_created_id %}" class="white"><b>join edit</b></a>
+				{% endif %}
 			</ul>
 		</div>
 	
@@ -204,11 +204,11 @@
 				</figcaption>
 			</figure>
 		<ul class="list-inline person-details-icons">
-			{% if user.is_authenticated %}
-			<a href="{% url 'story'  follow.follow_created_id user.username %}" class="white"><b>join edit</b></a>
-			{% else %}
-			<a href="{% url 'story_not_login'  follow.follow_created_id %}" class="white"><b>join edit</b></a>
-			{% endif %}
+				{% if user.is_authenticated %}
+				<a href="{% url 'story'  follow.follow_created_id user.username %}" class="white"><b>join edit</b></a>
+				{% else %}
+				<a href="{% url 'story_not_login'  follow.follow_created_id %}" class="white"><b>join edit</b></a>
+				{% endif %}
 		</ul>
 	</div>
 	{% endif %}

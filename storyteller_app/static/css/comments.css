@@ -1,6 +1,6 @@
 .comments-container {
 	
-	width: 800px;
+	
 	margin: 0px auto;
 }
 
@@ -63,8 +63,6 @@
 
 .comment-main-level:after {
 	content: '';
-	width: 0;
-	height: 0;
 	display: block;
 	clear: both;
 }
@@ -104,7 +102,7 @@
 }
 .comment-box .comment-head {
 	background: #FCFCFC;
-	padding: 10px 12px;
+	padding: 2px 8px;
 	border-bottom: 1px solid #E5E5E5;
 	overflow: hidden;
 	-webkit-border-radius: 4px 4px 0 0;
