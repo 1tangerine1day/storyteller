@@ -92,7 +92,11 @@
         <figcaption>
             <h2>{{ post.storyTitle }}</h2>
             <p>{{ post.post_likes }} likes<br>
-            <a href="{% url 'story' post.created_id user.username %}" title="2">start edit</a></p>            
+            {% if user.is_authenticated %}
+            <a href="{% url 'story' post.created_id user.username %}" title="2">start edit</a></p>     
+            {% else %}
+            <a href="{% url 'story_not_login' post.created_id %}" title="2">start edit</a></p> 
+            {% endif %}
         </figcaption>
     </figure>
     {% endfor %}
