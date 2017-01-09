@@ -86,55 +86,17 @@
 
 <!-- works -->
 <div id="works" class=" clearfix grid"> 
-    <figure class="effect-oscar  wowload fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-        <img src="{% static 'img/1.jpg' %}" alt="img01">
-        <figcaption>
-            <h2>topic1</h2>
-            <p>1030 likes<br>
-            <a href="story.html" title="1" >start edit</a></p>            
-        </figcaption>
-    </figure>
+    {% for post in posts %}
      <figure class="effect-oscar  wowload fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
         <img src="{% static 'img/2.jpg' %}" alt="img01">
         <figcaption>
-            <h2>topic2</h2>
-            <p>1030 likes<br>
-            <a href="story.html" title="2">start edit</a></p>            
+            <h2>{{ post.storyTitle }}</h2>
+            <p>{{ post.post_likes }} likes<br>
+            <a href="{% url 'story' post.created_id user.username %}" title="2">start edit</a></p>            
         </figcaption>
     </figure>
-     <figure class="effect-oscar  wowload fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
-        <img src="{% static 'img/3.jpg' %}" alt="img01">
-        <figcaption>
-            <h2>topic3</h2>
-            <p>1030 likes<br>
-            <a href="story.html" title="3">start edit</a></p>            
-        </figcaption>
-    </figure>
-     <figure class="effect-oscar  wowload fadeInUp" style="visibility: hidden; animation-name: none;">
-        <img src="{% static 'img/4.jpg' %}" alt="img01">
-        <figcaption>
-            <h2>topic4</h2>
-            <p>1030 likes<br>
-            <a href="story.html" title="4">start edit</a></p>            
-        </figcaption>
-    </figure>
-     
-     <figure class="effect-oscar  wowload fadeInUp" style="visibility: hidden; animation-name: none;">
-        <img src="{% static 'img/5.jpg' %}" alt="img01">
-        <figcaption>
-            <h2>topic5</h2>
-            <p>1030 likes<br>
-            <a href="story.html" title="5">start edit</a></p>            
-        </figcaption>
-    </figure>
-    <figure class="effect-oscar  wowload fadeInUp" style="visibility: hidden; animation-name: none;">
-        <img src="{% static 'img/6.jpg' %}" alt="img01">
-        <figcaption>
-            <h2>topic6</h2>
-            <p>1030 likes<br>
-            <a href="story.html" title="6">start edit</a></p>            
-        </figcaption>
-    </figure>  
+    {% endfor %}
+ 
     
 </div>
     

@@ -31,7 +31,6 @@ urlpatterns = [
     url(r'^post_likes/(?P<pk>\d+)/', views.post_likes, name='post_likes'),
     url(r'^in_post_likes/(?P<pk>\d+)/', views.in_post_likes, name='in_post_likes'),
     url(r'^follow/(?P<pk>\d+)/', views.follow, name='follow'),
-    url(r'^finish/', views.collection_f, name='collection_f'),
     url(r'^post/', views.addpost, name = 'addpost'),
     url(r'^hot/', views.hot_sort, name = 'hot_sort'),
     url(r'^new/', views.new_sort, name = 'new_sort'),

@@ -168,10 +168,7 @@ def collection_e(request):
     else:
         return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
-# collection_f.html
-def collection_f(request):
-    
-    return render(request,'storyteller_app/collection_f.html')
+
      
 #create a new story
 def addpost(request):
@@ -214,7 +211,7 @@ def addpost(request):
             
 
             
-            return redirect("story",intopk.created_id)
+            return redirect("story",intopk.created_id,request.user.username)
         
         else:
             post_list  = Post.objects.all()
@@ -226,9 +223,15 @@ def addpost(request):
 
 
 
+
 #index.html
 def index(request):
-    return render(request,'storyteller_app/index.html')
+    
+    post_list = Post.objects.all().order_by('-post_likes')[:6]
+    
+    
+    return render(request,'storyteller_app/index.html',{'posts':post_list})
+
 
 
 
@@ -293,7 +296,10 @@ def hot_sort(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
 
-    return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    if request.is_ajax():
+        return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    else:
+        return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
 
 
 
@@ -314,7 +320,10 @@ def new_sort(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         contacts = paginator.page(paginator.num_pages)
 
-    return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    if request.is_ajax():
+        return render(request, 'storyteller_app/refresh_post.html',{'contacts': contacts})
+    else:
+        return render(request, 'storyteller_app/collection_e.html', {'contacts': contacts})
     
  
  
