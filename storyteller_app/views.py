@@ -399,7 +399,7 @@ def personal(request, pk):
         img = Img.objects.filter(username = temp_pk).order_by('-pk')[0]
         
     #get follow from 
-    my_followlist = Follow.objects.filter(follow_who=request.user.username).all()
+    my_followlist = Follow.objects.filter(follow_who=temp_pk).all()
     
     
     #cal exp
