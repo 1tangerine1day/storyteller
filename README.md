@@ -1,5 +1,8 @@
 # Stroyteller
-demo : https://www.youtube.com/watch?v=iA-frCc2dEg&t=94s
+demo video :
+
+[![Watch the video](https://github.com/1tangerine1day/storyteller/blob/master/image/show.PNG)](https://www.youtube.com/watch?v=iA-frCc2dEg)
+
 -------------------------------------------------------------------------
 
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
